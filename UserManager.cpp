@@ -118,7 +118,7 @@ User UserManager::getNewUserData() {
     return user;
 }
 
-int UserManager::userLogIn() {
+void UserManager::userLogIn() {
 
     User user;
     string login = "", password = "";
@@ -133,7 +133,7 @@ int UserManager::userLogIn() {
         {
             for (int numberOfTrial = 3; numberOfTrial > 0; numberOfTrial--)
             {
-                cout << "Enter password. You have: " << numberOfTrial << " left: ";
+                cout << "Enter password. You have " << numberOfTrial << " left login attempt: ";
                 password = AuxiliaryMethod::getLine();
 
                 if (itr -> getPassword() == password)
@@ -141,18 +141,20 @@ int UserManager::userLogIn() {
                     loggedInUserId = itr -> getUserId();
                     cout << endl << "You logged successfully" << endl << endl;
                     system("pause");
-                    return loggedInUserId;
+                    return ;
 
                 }
             }
             cout << "You have entered 3 times incorrect password" << endl;
             system("pause");
-            return 0;
+            return ;
         }
         itr++;
     }
     cout << "There is no user with this login" << endl << endl;
 
     system("pause");
-    return 0;
+    return ;
 }
+
+

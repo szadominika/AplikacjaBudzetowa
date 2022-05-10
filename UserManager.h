@@ -34,7 +34,7 @@ public:
         char selectOptionFromUserMenu();
         void showAllUsers();
         int getIdLoggedUser();
-        int userLogIn();
+        void userLogIn();
         void logOffUser();
         bool isUserLoggedIn();
 

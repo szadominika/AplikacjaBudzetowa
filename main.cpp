@@ -5,7 +5,9 @@ using namespace std;
 
 int main()
 {
-    BudgetApp budgetApp("Users.xml"/*, "Incomes.xml", "Expenses.xml"*/);
+    BudgetApp budgetApp("Users.xml"/*, "Incomes.xml"/*, "Expenses.xml"*/);
+   // budgetApp.showAllUsers();
+    // system("pause");
     char option = 0;
 
     while (true)
@@ -21,13 +23,13 @@ int main()
                 budgetApp.registerUser();
                 break;
             case '2':
-               // budgetApp.logowanieUzytkownika();
+                budgetApp.userLogIn();
                 break;
             case '9':
                 exit(0);
                 break;
             default:
-                cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+                cout << endl << "There is no such option in the menu." << endl << endl;
                 system("pause");
                 break;
             }
@@ -35,33 +37,30 @@ int main()
        else {
 
             option = budgetApp.selectOptionFromUserMenu();
-           /* switch (wybor)
+            switch (option)
             {
             case '1':
-                budgetApp.dodajAdresata();
+               // budgetApp.addIncome();
                 break;
             case '2':
-                budgetApp.wyszukajAdresatowPoImieniu();
+               // budgetApp.wyszukajAdresatowPoImieniu();
                 break;
             case '3':
-                ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();
+               // ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();
                 break;
             case '4':
-                ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+               // ksiazkaAdresowa.wyswietlWszystkichAdresatow();
                 break;
             case '5':
-                ksiazkaAdresowa.usunAdresata();
+                //ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
                 break;
             case '6':
-                ksiazkaAdresowa.edytujAdresata();
+               // ksiazkaAdresowa.edytujAdresata();
                 break;
             case '7':
-               ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
+               budgetApp.logOffUser();
                 break;
-            case '8':
-                ksiazkaAdresowa.wylogowanieUzytkownika();
-                break;
-            }*/
+            }
         }
     }
 

@@ -51,7 +51,17 @@ char BudgetApp::selectOptionFromUserMenu() {
 }
 
 
-/*oid BudgetApp :: addIncome() {
+void BudgetApp::userLogIn() {
+
+     userManager.userLogIn();
+         if(userManager.isUserLoggedIn())
+         {
+            // adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI,NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI,uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+         }
+}
+
+
+/*void BudgetApp :: addIncome() {
 
     if (userMenager.ifUserIsLogged()) {
         itemMenager->addIncome();
