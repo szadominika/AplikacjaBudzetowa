@@ -44,3 +44,75 @@ string AuxiliaryMethod::changeFirstLetterToCapitalAndOtherToLowercase(string tex
     }
     return text;
 }
+
+string AuxiliaryMethod::removeDashFromDate(string date) {
+
+    string stringDatewithoutDash;
+
+    for (int i = 0 ; i <= date.length(); i++) {
+        if (date[i] != '-') {
+            stringDatewithoutDash += date[i];
+        }
+    }
+    return stringDatewithoutDash;
+}
+
+int AuxiliaryMethod::convertStringToInt(string date) {
+
+    int number;
+    istringstream iss(date);
+    iss >> number;
+
+    return number;
+}
+
+float AuxiliaryMethod::getFloat() {
+
+    string providedData = "";
+    float number;
+
+    while (true)
+    {
+        cin.clear();
+        getline(cin, providedData);
+
+        stringstream myStream(providedData);
+        if (myStream >> number)
+            break;
+        cout << "This is not the amount. Please add again. " << endl;
+    }
+    return number;
+}
+
+string AuxiliaryMethod::convertFloatToString(float amount) {
+
+    std::stringstream FloatToStr;
+    std::string str;
+
+    FloatToStr << amount;
+    FloatToStr >> str;
+    FloatToStr.clear();
+
+    return str;
+
+}
+
+string AuxiliaryMethod::convertIntToString (int number) {
+
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
+string AuxiliaryMethod::addDashToDate(string date) {
+
+    string stringDateWithDash;
+    stringDateWithDash = date.insert (4,1,'-');
+    stringDateWithDash = stringDateWithDash.insert (7,1,'-');
+    cout << stringDateWithDash << endl;
+
+    return stringDateWithDash;
+}
+
+

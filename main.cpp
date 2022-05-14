@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    BudgetApp budgetApp("Users.xml"/*, "Incomes.xml"/*, "Expenses.xml"*/);
+    BudgetApp budgetApp("Users.xml", "Incomes.xml"/*, "Expenses.xml"*/);
    // budgetApp.showAllUsers();
     // system("pause");
     char option = 0;
@@ -40,7 +40,7 @@ int main()
             switch (option)
             {
             case '1':
-               // budgetApp.addIncome();
+                budgetApp.addIncome();
                 break;
             case '2':
                // budgetApp.wyszukajAdresatowPoImieniu();

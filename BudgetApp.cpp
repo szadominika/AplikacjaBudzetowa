@@ -23,8 +23,8 @@ void BudgetApp :: showAllUsers() {
 void BudgetApp :: logOffUser(){
 
     userManager.logOffUser();
-    //delete itemMenager;
-    //itemMenager = NULL;
+    delete itemManager;
+    itemManager = NULL;
 }
 
 char BudgetApp::selectOptionFromMainMenu()
@@ -56,23 +56,22 @@ void BudgetApp::userLogIn() {
      userManager.userLogIn();
          if(userManager.isUserLoggedIn())
          {
-            // adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI,NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI,uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
-         }
+             itemManager = new ItemManager (FILE_NAME_WITH_INCOMES/*, FILE_NAME_WITH_EXPENSES*/, userManager.getIdLoggedUser());
+        }
 }
 
 
-/*void BudgetApp :: addIncome() {
+void BudgetApp :: addIncome() {
 
-    if (userMenager.ifUserIsLogged()) {
-        itemMenager->addIncome();
+    if (userManager.isUserLoggedIn()) {
+        itemManager->addIncome();
     } else {
-
         cout << "You need to login " << endl;
         system ("pause");
     }
 }
 
-void BudgetApp :: addExpense() {
+/*void BudgetApp :: addExpense() {
 
     if (userMenager.ifUserIsLogged()) {
         itemMenager->addExpense();
