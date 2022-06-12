@@ -1,87 +1,91 @@
 #include "FileWithIncomes.h"
 #include "Markup.h"
 
-void FileWithIncomes::addIncomeToFile(Item income)
-{
-    string amount = AuxiliaryMethod::convertFloatToString (income.getItemAmount());
-    CMarkup xml;
-    string fileNameWithIncomes = XmlFile::getFileName();
+bool FileWithIncomes::addIncomeToFile(Income income,Date date) {
 
+    //string amount = AuxiliaryMethod::convertFloatToString (income.getItemAmount());
+    CMarkup xml;
+    string fileNameWithIncomes = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithIncomes);
+
      if (!fileExists)
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Incomes");
     }
-
     xml.FindElem();
     xml.IntoElem();
     xml.AddElem("Income");
     xml.IntoElem();
-    xml.AddElem( "IncomeId", income.getItemId() );
-    xml.AddElem( "UserId", income.getUserId() );
-    xml.AddElem( "Date", income.getItemDate() );
-    xml.AddElem( "Item", income.getItemName() );
-    xml.AddElem( "Amount", amount );
-
+    xml.AddElem( "IncomeId", income.getIncomeId());
+    xml.AddElem( "UserId", income.getUserId());
+    xml.AddElem( "Date", /*income.getItemDate()*/date.getDateString());
+    xml.AddElem( "Item", income.getItemName());
+    xml.AddElem( "Amount", AuxiliaryMethod::convertFloatToString (income.getItemAmount()));
     xml.Save(fileNameWithIncomes);
-
+    lastIncomeId++;
 }
-vector <Item> FileWithIncomes::getIncomeFromFile(int idLoggedUser) {
-    Item item;
-    vector <Item> incomes;
-    CMarkup xml;
-    string fileNameWithIncomes = XmlFile::getFileName();
-    bool fileExists = xml.Load(fileNameWithIncomes);
 
-    if (fileExists == true) {
+vector <Income> FileWithIncomes::getIncomeFromFile(int ID_LOGGED_USER) {
+
+    //Income income;
+    vector <Income> incomes;
+    int incomeId = 0;
+    CMarkup xml;
+
+    if (fileExists(xml)) {
+
         xml.FindElem();
         xml.IntoElem();
         while ( xml.FindElem("Income") == true) {
-            xml.IntoElem();
+
+                Income income;
+                xml.IntoElem();
                 xml.FindElem( "IncomeId");
-                int itemId = atoi(xml.GetData().c_str());
-                item.setupItemId(itemId);
+                //int itemId = atoi(xml.GetData().c_str());
+                incomeId = atoi((xml.GetElemContent()).c_str());
+                //item.setupItemId(itemId);
                 xml.FindElem("UserId");
-            int userId = atoi(xml.GetData().c_str());//atoi( MCD_2PCSZ(xml.GetData()));
-                item.setupUserId(userId);
-
-                xml.FindElem( "Date");
-                string itemDate = xml.GetData();
-                item.setupStringDate(itemDate);
-
-                xml.FindElem( "Item");
-                string incomeName = xml.GetData();
-                item.setupItemName(incomeName);
-
-                xml.FindElem( "Amount");
-                float itemAmount = atoi(xml.GetData().c_str());
-                item.setupItemAmount(itemAmount);
-                incomes.push_back(item);
-
-                xml.OutOfElem();
-
+           // int userId = atoi(xml.GetData().c_str());//atoi( MCD_2PCSZ(xml.GetData()));
+           if (atoi((xml.GetElemContent()).c_str()) == ID_LOGGED_USER) {
+                    income.setUserId(ID_LOGGED_USER);
+                    income.setIncomeId(incomeId);
+                    xml.FindElem( "Date");
+                    income.setDate(AuxiliaryMethod::convertStringToInt(AuxiliaryMethod::removeDashFromDate(xml.GetElemContent())));//changeDateToIntNumber(xml.GetElemContent()));
+                    xml.FindElem( "Item");
+                    income.setItemName(xml.GetElemContent());
+                    xml.FindElem( "Amount");
+                    income.setItemAmount(AuxiliaryMethod::convertStringToFloat(xml.GetElemContent()));
+                    incomes.push_back(income);
+           }
+           xml.OutOfElem();
         }
     }
     return incomes;
 }
 
-Item FileWithIncomes::changeIntDateFormat(Item income){
+int FileWithIncomes::getLastIncomeIdFromFile() {
 
-    Item incomeOb;
-    int itemId = income.getItemId();
-    incomeOb.setupItemId(itemId);
-    int userId = income.getUserId();
-    incomeOb.setupUserId(userId);
-    //string itemDate;
-    string itemName = income.getItemName();
-    incomeOb.setupItemName(itemName);
-    float itemAmount = income.getItemAmount();
-    incomeOb.setupItemAmount(itemAmount);
+    CMarkup xml;
+    vector <Income> incomes;
 
-    string iteamStringDate = AuxiliaryMethod::convertIntToString (income.getIntDate());
-    string dateItemWithDash = AuxiliaryMethod::addDashToDate(iteamStringDate);
-    incomeOb.setupStringDate(dateItemWithDash);
-    cout << "po zmienie formatu data: " << dateItemWithDash <<endl;
-     return incomeOb;
+    if(fileExists(xml)) {
+
+        xml.FindElem();
+        xml.IntoElem();
+        while(xml.FindElem("Income")) {
+
+            xml.FindChildElem("IncomeId");
+        }
+        return lastIncomeId = AuxiliaryMethod::convertStringToInt(xml.GetChildData());
+    } else {
+
+        return 0;
+    }
 }
+
+int FileWithIncomes::getLastIncomeId() {
+
+    return lastIncomeId;
+}
+

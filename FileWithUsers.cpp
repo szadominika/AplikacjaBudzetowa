@@ -1,5 +1,6 @@
 #include <iostream>
 #include "FileWithUsers.h"
+#include "Markup.h"
 
 using namespace std;
 
@@ -7,10 +8,9 @@ void FileWithUsers::addUserToFile(User user) {
 
     CMarkup xml;
     string fileNameWithUsers = XmlFile :: getFileName();
-
     bool fileExists = xml.Load(fileNameWithUsers);
 
-    if (!fileExists) {
+    if (!fileExists) {//(xml)) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
@@ -36,10 +36,8 @@ vector <User> FileWithUsers::loadUserFromFile() {
     vector <User> users;
 
     CMarkup xml;
-    string fileNameWithUsers = XmlFile :: getFileName();
-    bool fileExists = xml.Load(fileNameWithUsers);
 
-    if (fileExists == true)
+    if (fileExists(xml)) //(fileExists == true)
     {
         xml.FindElem();
         xml.IntoElem();
@@ -67,6 +65,37 @@ vector <User> FileWithUsers::loadUserFromFile() {
         }
     }
     return users;
+}
+
+bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
+
+    CMarkup xml;
+
+    if (fileExists(xml))
+    {
+        xml.FindElem();
+        xml.IntoElem();
+        while(xml.FindElem("User"))
+        {
+            xml.IntoElem();
+            xml.FindElem("UserId");
+            int userId = AuxiliaryMethod::convertStringToInt(xml.GetElemContent());
+            if (userId == itr -> getUserId())
+            {
+                xml.FindElem("Password");
+                xml.SetData(itr -> getPassword());
+                xml.Save(getFileName());
+                return true;
+            }
+            xml.OutOfElem();
+        }
+    }
+    else
+    {
+        cout << "Cannot open the " << getFileName() << " file." << endl;
+        return false;
+    }
+
 }
 
 /*bool FileWithUsers :: checkLogin(string login) {

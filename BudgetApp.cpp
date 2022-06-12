@@ -1,35 +1,36 @@
  #include <iostream>
+
  #include "BudgetApp.h"
  #include "AuxiliaryMethods.h"
  #include "User.h"
 
 using namespace std;
 
-void BudgetApp::registerUser()
-{
+void BudgetApp :: registerUser() {
+
     userManager.registerUser();
 }
 
-bool BudgetApp::isUserLoggedIn()
-{
+bool BudgetApp :: isUserLoggedIn() {
+
     userManager.isUserLoggedIn();
 }
 
 void BudgetApp :: showAllUsers() {
 
-    userManager.showAllUsers();
+//    userManager.showAllUsers();
 }
 
-void BudgetApp :: logOffUser(){
+void BudgetApp :: logOffUser() {
 
     userManager.logOffUser();
     delete itemManager;
     itemManager = NULL;
 }
 
-char BudgetApp::selectOptionFromMainMenu()
-{
-    AuxiliaryMethod auxiliaryMethod;
+char BudgetApp :: selectOptionFromMainMenu() {
+
+   // AuxiliaryMethod auxiliaryMethod;
     char option;
 
     system("cls");
@@ -40,26 +41,24 @@ char BudgetApp::selectOptionFromMainMenu()
     cout << "9. End" << endl;
     cout << "---------------------------" << endl;
     cout << "Your choice: ";
-    option = auxiliaryMethod.getChar();
+    option = AuxiliaryMethod::getChar();
 
     return option;
 }
 
-char BudgetApp::selectOptionFromUserMenu() {
+char BudgetApp :: selectOptionFromUserMenu() {
 
     userManager.selectOptionFromUserMenu();
 }
 
-
-void BudgetApp::userLogIn() {
+void BudgetApp :: userLogIn() {
 
      userManager.userLogIn();
          if(userManager.isUserLoggedIn())
          {
-             itemManager = new ItemManager (FILE_NAME_WITH_INCOMES/*, FILE_NAME_WITH_EXPENSES*/, userManager.getIdLoggedUser());
-        }
+             itemManager = new ItemManager (FILE_NAME_WITH_INCOMES, FILE_NAME_WITH_EXPENSES, userManager.getIdLoggedUser());
+         }
 }
-
 
 void BudgetApp :: addIncome() {
 
@@ -71,6 +70,11 @@ void BudgetApp :: addIncome() {
     }
 }
 
+void BudgetApp :: changePassword() {
+
+    userManager.changePassword();
+}
+
 /*void BudgetApp :: addExpense() {
 
     if (userMenager.ifUserIsLogged()) {
@@ -80,4 +84,32 @@ void BudgetApp :: addIncome() {
         cout << "You need to login " << endl;
         system ("pause");
     }
+}*/
+
+/*void BudgetApp :: viewCurrentMonthBalance() {
+
+    if (userManager.isUserLoggedIn()) {
+        itemManager->viewCurrentMonthBalance();
+    } else {
+        cout << "You need to login " << endl;
+        system ("pause");
+    }
+}
+
+void BudgetApp :: viewLastMonthBalance() {
+
+    if (userManager.isUserLoggedIn()) {
+        itemManager->viewLastMonthBalance();
+    } else {
+        cout << "You need to login " << endl;
+        system ("pause");
+}
+
+void BudgetApp :: viewBalanceOfSelectedPeriod() {
+
+    if (userManager.isUserLoggedIn()) {
+        itemManager->viewBalanceOfSelectedPeriod();
+    } else {
+        cout << "You need to login " << endl;
+        system ("pause");
 }*/

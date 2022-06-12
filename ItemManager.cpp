@@ -1,76 +1,51 @@
 #include "ItemManager.h"
 
-void ItemManager :: addIncome()
-{
-    Item income = provideIncomeDetails();
+void ItemManager :: addIncome() {
+
+    Income income;
+    income = provideIncomeDetails();
+
     incomes.push_back(income);
-    fileWithIncomes.addIncomeToFile(income);
-    cout << endl << "Income added to the file" << endl << endl;
-    showAllIncomes();
+
+    fileWithIncomes.addIncomeToFile(income, date);
+    cout << endl << "Income has been successfully added to the file" << endl << endl;
     system("pause");
 }
 
+Income ItemManager :: provideIncomeDetails() {
 
-int ItemManager :: getNewIncomeId()
-{
-    if (incomes.empty() == true)
-        return 1;
-    else
-        return incomes.back().getItemId() + 1;
-}
+    Income income;
 
-
-Item ItemManager :: provideIncomeDetails()
-{
-    Item item;
-    DataManager dataManager;
-    string itemName, userSurname, otherDate, stringDatewithoutDash, currentStringDate, stringAmount;
-    int currentDate, intDateWithoutDash;
-    float amount;
+    string itemName = "";
+    float amount = 0;
     char option;
 
-    int itemId = getNewIncomeId();
-    item.setupItemId(itemId);
-    item.setupUserId(ID_LOGGED_USER);
+    system("cls");
+    cout << " >>> ADDING NEW INCOME <<<" << endl << endl;
 
-    cout << "Do you want to add income with current date?" <<endl;
-    cout << "If yes, please click 'y', if you want to choose other date, please click 'n': " << endl;
-    option = AuxiliaryMethod::getChar();
+    date.getDateFromUser();
+    income.setDate(date.getDateInt());
 
-    if (option == 'y') {
-        currentDate = dataManager.getCurrentDate();
-        currentStringDate = AuxiliaryMethod::convertIntToString(currentDate);
-        currentStringDate = AuxiliaryMethod::addDashToDate(currentStringDate);
-        item.setupStringDate(currentStringDate);
-    }
-    else if (option == 'n') {
-
-        do {
-            cout << "Provide date in format YYYY-MM-DD: ";
-            otherDate = AuxiliaryMethod :: getLine();
-        } while (dataManager.isDateCorrect(otherDate) == false);
-
-        stringDatewithoutDash = AuxiliaryMethod :: removeDashFromDate(otherDate);
-        intDateWithoutDash = AuxiliaryMethod :: convertStringToInt (stringDatewithoutDash);
-        item.setupStringDate(otherDate);
-    }
     cout << "Provide income description: ";
     itemName = AuxiliaryMethod::getLine();
-    item.setupItemName(itemName);
+    income.setItemName(itemName);
+
     cout << "Provide amount: ";
     amount = AuxiliaryMethod::getFloat();
-    item.setupItemAmount(amount);
+    income.setItemAmount(amount);
 
-    return item;
+    income.setIncomeId(fileWithIncomes.getLastIncomeId() + 1);
+    income.setUserId(ID_LOGGED_USER);
+
+    return income;
 }
 
-void ItemManager :: showAllIncomes() {
+void ItemManager :: viewIncome( vector <Income>::iterator itr) {
 
-    for (int i = 0; i < incomes.size(); i++) {
-        cout << "Item Id: " << incomes[i].getItemId() << endl;
-        cout << "User Id: " << incomes[i].getUserId() << endl;
-        cout << "Item date: " << incomes[i].getItemDate() << endl;
-        cout << "Item name: " << incomes[i].getItemName() << endl;
-        cout << "Item amount: " << incomes[i].getItemAmount() << endl << endl;
-    }
+    cout << "Income ID:   " << itr -> getIncomeId() << endl;
+    cout << "User ID:     " << itr -> getUserId() << endl;
+   // cout << "Date:        " << Date::changeDateTostring(itr -> getItemDate()) << endl;
+    cout << "Item:        " << itr -> getItemName() << endl;
+    cout << "Amount:      " << itr -> getItemAmount() << endl;
+
 }

@@ -1,6 +1,6 @@
 #include "DataManager.h"
 
-int DataManager :: getCurrentDate() {
+/*int DataManager :: getCurrentDate() {
     int currentDate = 0;
     year = getCurrentYear();
     currentDate = (year * 10000);
@@ -59,7 +59,7 @@ bool DataManager :: isDateCorrect(string date) {
     }
 
     return true;
-}
+}*/
 
 bool DataManager :: isValidYear (int year) {
 

@@ -3,32 +3,32 @@
 
 #include <iostream>
 #include <vector>
-#include <fstream>
 #include <cstdlib>
 
 #include "Markup.h"
-#include "TextFile.h"
-#include "Item.h"
+#include "XmlFile.h"
+#include "Incomes.h"
+//#include "Item.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;
 
-class FileWithIncomes:public XmlFile {
+class FileWithIncomes : public XmlFile {
 
     string fileNameWithIncomes;
-    int lastItemId;
-    int idLoggedUser;
-    vector <Item> incomes;
+    int lastIncomeId;
+
+    int getLastIncomeIdFromFile();
 
 public:
     FileWithIncomes(string fileNameWithIncomes) : XmlFile(fileNameWithIncomes){
-     //idLoggedUser = 0;
-     //lastItemId = 0;
+
+        lastIncomeId = getLastIncomeIdFromFile();
     };
-    void addIncomeToFile(Item income);
-    vector <Item> getIncomeFromFile(int idLoggedUser);
-    Item changeIntDateFormat(Item income);
-    //int getLastItemId();
+
+    int getLastIncomeId();
+    bool addIncomeToFile(Income income, Date date);
+    vector <Income> getIncomeFromFile(int ID_LOGGED_USER);
 };
 
 #endif

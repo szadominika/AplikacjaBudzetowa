@@ -2,7 +2,7 @@
 #include <sstream>
 #include <vector>
 #include <windows.h>
-#include <fstream>
+//#include <fstream>
 #include <algorithm>
 
 #include "AuxiliaryMethods.h"
@@ -23,7 +23,7 @@ char AuxiliaryMethod::getChar()
             sign = input[0];
             break;
         }
-        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+        cout << "This is not a character. Please enter again." << endl;
     }
     return sign;
 }
@@ -62,21 +62,19 @@ int AuxiliaryMethod::convertStringToInt(string date) {
     int number;
     istringstream iss(date);
     iss >> number;
-
     return number;
 }
 
 float AuxiliaryMethod::getFloat() {
 
-    string providedData = "";
+    string input = "";
     float number;
 
     while (true)
     {
         cin.clear();
-        getline(cin, providedData);
-
-        stringstream myStream(providedData);
+        getline(cin, input);
+        stringstream myStream(input);
         if (myStream >> number)
             break;
         cout << "This is not the amount. Please add again. " << endl;
@@ -115,4 +113,41 @@ string AuxiliaryMethod::addDashToDate(string date) {
     return stringDateWithDash;
 }
 
+float AuxiliaryMethod::convertStringToFloat(string amount) {
 
+    float input;
+    istringstream iss(amount);
+    iss >> input;
+    return input;
+}
+
+bool AuxiliaryMethod::isFloatNumber(string input) {
+
+    if(input == "")
+        return false;
+    else
+    {
+        size_t found = input.find_first_not_of("1234567890.,");
+
+        if (found == string::npos)
+        {
+            found = input.find_first_not_of("1234567890");
+
+            if(found == string::npos)
+                return true;
+            else if(found == input.find_last_not_of("1234567890"))
+                return true;
+        }
+        return false;
+    }
+}
+
+string AuxiliaryMethod::changeCommaToDot(string input) {
+
+    size_t foundComma = input.find(",");
+    if(foundComma != string::npos)
+    {
+        input.replace(foundComma, 1, ".");
+    }
+    return input;
+}

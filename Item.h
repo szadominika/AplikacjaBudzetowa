@@ -6,37 +6,38 @@
 using namespace std;
 
 class Item {
-    int itemId;
+
     int userId;
-    string itemDate;
+    int itemDate;
     string itemName;
     float itemAmount;
-    int intDate;
 
 public:
-        Item(int itemId = 0, int userId = 0, string itemDate = "", string itemName = "", float itemAmount = 0.0)
+       /* Item(/*int itemId = 0, int userId = 0, string itemDate = "", string itemName = "", float itemAmount = 0.0)
     {
-        this->itemId = itemId;
+       // this->itemId = itemId;
         this->userId = userId;
         this->itemDate = itemDate;
         this->itemName = itemName;
         this->itemAmount = itemAmount;
-    }
-    //void setupDate();
-    void setupDate (int newDate);
-    void setupStringDate (string newDate);
-    void setupUserId (int newUserId);
-    void setupItemId (int newItemId);
-    void setupItemName(string newItemName);
-    void setupItemAmount(float newItemAmount);
+    }*/
 
-    int getItemId();
+    bool operator () (Item a, Item b) {
+
+    if (a.getItemDate() < b.getItemDate())
+        return true;
+    }
+
+    void setDate (int newDate);
+ //   void setStringDate (string newDate);
+    void setUserId (int newUserId);
+    void setItemName(string newItemName);
+    void setItemAmount(float newItemAmount);
+
     int getUserId();
     string getItemName();
     float getItemAmount();
-    string getItemDate();
-    int getIntDate();
-
+    int getItemDate();
 };
 
 #endif

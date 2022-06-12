@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include <fstream>
 #include <sstream>
 
 #include "User.h"
@@ -22,10 +21,9 @@ class UserManager {
     int getNewUserId();
     bool isLoginExists(string login);
 
-
-
 public:
         UserManager(string fileNameWithUsers) : fileWithUsers(fileNameWithUsers) {
+
             loggedInUserId = 0;
             users = fileWithUsers.loadUserFromFile();
         };
@@ -37,8 +35,8 @@ public:
         void userLogIn();
         void logOffUser();
         bool isUserLoggedIn();
+        void changePassword();
 
 };
-
 
 #endif
