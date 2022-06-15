@@ -5,24 +5,24 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include <fstream>
 #include <cstdlib>
 #include <vector>
 
-#include "TextFile.h"
+#include "XmlFile.h"
 #include "Markup.h"
 #include "User.h"
 
 using namespace std;
 
-class FileWithUsers:public XmlFile {
+class FileWithUsers : public XmlFile {
 
     string fileNameWithUsers;
+
 public:
     FileWithUsers(string fileNameWithUsers) : XmlFile(fileNameWithUsers) {};
     void addUserToFile(User user);
-   // bool checkLogin(string login);
     vector <User> loadUserFromFile();
+    bool changeUserPassword(vector <User>::iterator itr);
 
 };
 

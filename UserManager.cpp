@@ -9,15 +9,14 @@ using namespace std;
 char UserManager::selectOptionFromUserMenu() {
 
     char option;
-   // AuxiliaryMethod auxiliaryMethod;
     system("cls");
     cout << " >>> USER MENU <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Add income" << endl;
     cout << "2. Add expense" << endl;
-    cout << "3. Display balance for current month" << endl;
-    cout << "4. Display balance for previous month" << endl;
-    cout << "5. Display balance for selected period" << endl;
+    cout << "3. View current month balance" << endl;
+    cout << "4. View previous month balance" << endl;
+    cout << "5. View balance of the selected period" << endl;
     cout << "6. Change password" << endl;
     cout << "7. Log out" << endl;
     cout << "---------------------------" << endl;
@@ -48,7 +47,7 @@ int UserManager::getIdLoggedUser() {
 
 }
 
-void UserManager::showAllUsers() {
+/*void UserManager::showAllUsers() {
 
     for (int i = 0; i < users.size(); i++) {
         cout << "User ID: " << users[i].getUserId() << endl;
@@ -57,7 +56,7 @@ void UserManager::showAllUsers() {
         cout << "User name: " << users[i].getName() << endl;
         cout << "User surname: " << users[i].getSurname() << endl << endl;
     }
-}
+}*/
 
 bool UserManager::isLoginExists(string login) {
 
@@ -84,10 +83,9 @@ int UserManager::getNewUserId() {
 void UserManager::registerUser() {
 
     User user = getNewUserData();
-    //FileWithUsers fileWithUsers;
     users.push_back(user);
     fileWithUsers.addUserToFile(user);
-    cout << endl << "Account created" << endl << endl;
+    cout << endl << "Your account was successfully created" << endl << endl;
     system("pause");
 }
 
@@ -139,7 +137,7 @@ void UserManager::userLogIn() {
                 if (itr -> getPassword() == password)
                 {
                     loggedInUserId = itr -> getUserId();
-                    cout << endl << "You logged successfully" << endl << endl;
+                    cout << endl << "You have successfully signed in." << endl << endl;
                     system("pause");
                     return ;
 
@@ -152,9 +150,28 @@ void UserManager::userLogIn() {
         itr++;
     }
     cout << "There is no user with this login" << endl << endl;
-
     system("pause");
     return ;
 }
 
+void UserManager::changePassword() {
 
+    string newPassword = "";
+    cout << "Enter password: ";
+    cin >> newPassword;
+    bool isPasswordChanged = false;
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+    {
+        if (itr -> getUserId() == loggedInUserId)
+        {
+            itr -> setPassword(newPassword);
+            isPasswordChanged = fileWithUsers.changeUserPassword(itr);
+
+            if (isPasswordChanged)
+                cout << "\nYour password has been successfully changed." << endl << endl;
+
+            system("pause");
+        }
+    }
+}

@@ -2,7 +2,7 @@
 #include <sstream>
 #include <vector>
 #include <windows.h>
-#include <fstream>
+//#include <fstream>
 #include <algorithm>
 
 #include "AuxiliaryMethods.h"
@@ -23,7 +23,7 @@ char AuxiliaryMethod::getChar()
             sign = input[0];
             break;
         }
-        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+        cout << "This is not a character. Please enter again." << endl;
     }
     return sign;
 }
@@ -44,3 +44,120 @@ string AuxiliaryMethod::changeFirstLetterToCapitalAndOtherToLowercase(string tex
     }
     return text;
 }
+
+string AuxiliaryMethod::removeDashFromDate(string date) {
+
+    string stringDatewithoutDash;
+
+    for (int i = 0 ; i <= date.length(); i++) {
+        if (date[i] != '-') {
+            stringDatewithoutDash += date[i];
+        }
+    }
+    return stringDatewithoutDash;
+}
+
+int AuxiliaryMethod::convertStringToInt(string date) {
+
+    int number;
+    istringstream iss(date);
+    iss >> number;
+    return number;
+}
+
+float AuxiliaryMethod::getFloat() {
+
+    string input = "";
+    float number;
+
+    while (true) {
+
+        cin.clear();
+        getline(cin, input);
+        input = changeCommaToDot(input);
+        stringstream myStream(input);
+        if (myStream >> number)
+            break;
+        cout << "This is not the amount. Please add again. " << endl;
+    }
+    return number;
+}
+
+string AuxiliaryMethod::convertFloatToString(float amount) {
+
+    std::stringstream FloatToStr;
+    std::string str;
+
+    FloatToStr << amount;
+    FloatToStr >> str;
+    FloatToStr.clear();
+
+    return str;
+
+}
+
+string AuxiliaryMethod::convertIntToString (int number) {
+
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
+string AuxiliaryMethod::addDashToDate(string date) {
+
+    string stringDateWithDash;
+    stringDateWithDash = date.insert (4,1,'-');
+    stringDateWithDash = stringDateWithDash.insert (7,1,'-');
+    cout << stringDateWithDash << endl;
+
+    return stringDateWithDash;
+}
+
+float AuxiliaryMethod::convertStringToFloat(string amount) {
+
+    float input;
+    istringstream iss(amount);
+    iss >> input;
+    return input;
+}
+
+bool AuxiliaryMethod::isFloatNumber(string input) {
+
+    if(input == "")
+        return false;
+    else
+    {
+        size_t found = input.find_first_not_of("1234567890.,");
+
+        if (found == string::npos)
+        {
+            found = input.find_first_not_of("1234567890");
+
+            if(found == string::npos)
+                return true;
+            else if(found == input.find_last_not_of("1234567890"))
+                return true;
+        }
+        return false;
+    }
+}
+
+string AuxiliaryMethod::changeCommaToDot(string input) {
+
+    size_t foundComma = input.find(",");
+    if(foundComma != string::npos)
+    {
+        input.replace(foundComma, 1, ".");
+    }
+    return input;
+}
+
+
+bool AuxiliaryMethod::isLetter(char choice) {
+
+    if(isdigit(choice))
+        return false;
+    return true;
+}
+

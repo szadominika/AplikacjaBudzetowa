@@ -1,5 +1,6 @@
 #include <iostream>
 #include "FileWithUsers.h"
+#include "Markup.h"
 
 using namespace std;
 
@@ -7,10 +8,10 @@ void FileWithUsers::addUserToFile(User user) {
 
     CMarkup xml;
     string fileNameWithUsers = XmlFile :: getFileName();
-
     bool fileExists = xml.Load(fileNameWithUsers);
 
     if (!fileExists) {
+
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
@@ -36,10 +37,8 @@ vector <User> FileWithUsers::loadUserFromFile() {
     vector <User> users;
 
     CMarkup xml;
-    string fileNameWithUsers = XmlFile :: getFileName();
-    bool fileExists = xml.Load(fileNameWithUsers);
 
-    if (fileExists == true)
+    if (fileExists(xml)) //(fileExists == true)
     {
         xml.FindElem();
         xml.IntoElem();
@@ -69,20 +68,37 @@ vector <User> FileWithUsers::loadUserFromFile() {
     return users;
 }
 
-/*bool FileWithUsers :: checkLogin(string login) {
+bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
 
-    CMarkup xml;
+   CMarkup xml;
+    string fileNameWithUsers = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithUsers);
-    xml.Load(fileNameWithUsers);
-    //xml.SetDoc( fileNameWithUsers );
 
-    xml.ResetPos();
-    //xml.FindElem();
-    //xml.IntoElem();
-    while ( xml.FindElem("LOGIN") == true ) {
-        if ( xml.GetData() == login ) {
-            return true;
+
+    if (fileExists)
+    {
+        xml.FindElem();
+        xml.IntoElem();
+        while(xml.FindElem("User"))
+        {
+            xml.IntoElem();
+            xml.FindElem("UserId");
+            int userId = AuxiliaryMethod::convertStringToInt(xml.GetElemContent());
+            if (userId == itr -> getUserId())
+            {
+                xml.FindElem("Password");
+                xml.SetData(itr -> getPassword());
+                xml.Save(getFileName());
+                return true;
+            }
+            xml.OutOfElem();
         }
     }
-    return false;
-}*/
+    else
+    {
+        cout << "Cannot open the " << getFileName() << " file." << endl;
+        return false;
+    }
+
+}
+
