@@ -1,6 +1,8 @@
 #include "FileWithIncomes.h"
 #include "Markup.h"
 
+using namespace std;
+
 bool FileWithIncomes::addIncomeToFile(Income income,Date date) {
 
     //string amount = AuxiliaryMethod::convertFloatToString (income.getItemAmount());
@@ -18,7 +20,7 @@ bool FileWithIncomes::addIncomeToFile(Income income,Date date) {
     xml.AddElem("Income");
     xml.IntoElem();
     xml.AddElem( "IncomeId", income.getIncomeId());
-    xml.AddElem( "UserId", income.getUserId());
+    xml.AddElem( "UserID", income.getUserId());
     xml.AddElem( "Date", date.getDateString());
     xml.AddElem( "Item", income.getItemName());
     xml.AddElem( "Amount", AuxiliaryMethod::convertFloatToString (income.getItemAmount()));
@@ -42,7 +44,7 @@ vector <Income> FileWithIncomes::getIncomeFromFile(int ID_LOGGED_USER) {
                 xml.IntoElem();
                 xml.FindElem( "IncomeId");
                 incomeId = atoi((xml.GetElemContent()).c_str());
-                xml.FindElem("UserId");
+                xml.FindElem("UserID");
            if (atoi((xml.GetElemContent()).c_str()) == ID_LOGGED_USER) {
                     income.setUserId(ID_LOGGED_USER);
                     income.setIncomeId(incomeId);

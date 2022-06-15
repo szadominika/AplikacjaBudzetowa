@@ -56,7 +56,7 @@ int main()
                 //budgetApp..viewBalanceOfSelectedPeriod();
                 break;
             case '6':
-              //  budgetApp.changePassword();
+                budgetApp.changePassword();
                 break;
             case '7':
                budgetApp.logOffUser();
