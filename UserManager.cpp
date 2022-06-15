@@ -1,10 +1,9 @@
 #include <iostream>
+
 #include "UserManager.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;
-
-
 
 char UserManager::selectOptionFromUserMenu() {
 
@@ -29,7 +28,6 @@ char UserManager::selectOptionFromUserMenu() {
 void UserManager::logOffUser() {
 
     loggedInUserId = 0;
-
 }
 
 bool UserManager::isUserLoggedIn() {
@@ -38,13 +36,11 @@ bool UserManager::isUserLoggedIn() {
         return true;
     else
         return false;
-
 }
 
 int UserManager::getIdLoggedUser() {
 
     return loggedInUserId;
-
 }
 
 /*void UserManager::showAllUsers() {
@@ -94,12 +90,13 @@ User UserManager::getNewUserData() {
     User user;
     string newName, newSurname;
 
-    user.setUserId(getNewUserId());
+    loggedInUserId = getNewUserId();
+    user.setUserId(loggedInUserId);
 
     do {
         cout << "Enter login: ";
-
        user.setLogin(AuxiliaryMethod::getLine()); // bez obiektu, bezpoœrednio na klasie (metoda statyczna)
+
     } while (isLoginExists(user.getLogin()) == true);
 
         cout << "Enter password ";
@@ -158,7 +155,8 @@ void UserManager::changePassword() {
 
     string newPassword = "";
     cout << "Enter password: ";
-    cin >> newPassword;
+    newPassword = AuxiliaryMethod::getLine();
+
     bool isPasswordChanged = false;
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)

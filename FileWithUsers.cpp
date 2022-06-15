@@ -70,25 +70,26 @@ vector <User> FileWithUsers::loadUserFromFile() {
 
 bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
 
-   CMarkup xml;
+    CMarkup xml;
     string fileNameWithUsers = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithUsers);
 
+    if (fileExists == true) {
 
-    if (fileExists)
-    {
         xml.FindElem();
         xml.IntoElem();
+
         while(xml.FindElem("User"))
         {
             xml.IntoElem();
-            xml.FindElem("UserId");
-            int userId = AuxiliaryMethod::convertStringToInt(xml.GetElemContent());
+            xml.FindElem("UserID");
+            int userId = AuxiliaryMethod::convertStringToInt(xml.GetData());
             if (userId == itr -> getUserId())
             {
+            system("pause");
                 xml.FindElem("Password");
                 xml.SetData(itr -> getPassword());
-                xml.Save(getFileName());
+                xml.Save(fileNameWithUsers);
                 return true;
             }
             xml.OutOfElem();

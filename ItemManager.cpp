@@ -1,5 +1,7 @@
 #include "ItemManager.h"
 
+using namespace std;
+
 void ItemManager :: addIncome() {
 
     Income income;

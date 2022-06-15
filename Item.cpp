@@ -1,5 +1,8 @@
 #include "Item.h"
 
+
+using namespace std;
+
 void Item :: setDate (int newDate) {
     if (newDate >= 0)
         itemDate = newDate;

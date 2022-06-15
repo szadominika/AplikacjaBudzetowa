@@ -1,6 +1,9 @@
 #include "FileWithExpenses.h"
 #include "Markup.h"
 
+
+using namespace std;
+
 bool FileWithExpenses::addExpenseToFile(Expense expense,Date date) {
 
     //string amount = AuxiliaryMethod::convertFloatToString (income.getItemAmount());
@@ -16,7 +19,7 @@ bool FileWithExpenses::addExpenseToFile(Expense expense,Date date) {
     xml.AddElem("Expense");
     xml.IntoElem();
     xml.AddElem( "ExpenseId", expense.getExpenseId());
-    xml.AddElem( "UserId", expense.getUserId());
+    xml.AddElem( "UserID", expense.getUserId());
     xml.AddElem( "Date", date.getDateString());
     xml.AddElem( "Item", expense.getItemName());
     xml.AddElem( "Amount", AuxiliaryMethod::convertFloatToString (expense.getItemAmount()));
@@ -40,7 +43,7 @@ vector <Expense> FileWithExpenses::getExpenseFromFile(int ID_LOGGED_USER) {
                 xml.IntoElem();
                 xml.FindElem( "ExpenseId");
                 expenseId = atoi((xml.GetElemContent()).c_str());
-                xml.FindElem("UserId");
+                xml.FindElem("UserID");
            if (atoi((xml.GetElemContent()).c_str()) == ID_LOGGED_USER) {
                     expense.setUserId(ID_LOGGED_USER);
                     expense.setExpenseId(expenseId);

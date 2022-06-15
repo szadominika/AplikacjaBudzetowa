@@ -2,7 +2,6 @@
 #include <sstream>
 #include <vector>
 #include <windows.h>
-//#include <fstream>
 #include <algorithm>
 
 #include "AuxiliaryMethods.h"
@@ -152,7 +151,6 @@ string AuxiliaryMethod::changeCommaToDot(string input) {
     }
     return input;
 }
-
 
 bool AuxiliaryMethod::isLetter(char choice) {
 

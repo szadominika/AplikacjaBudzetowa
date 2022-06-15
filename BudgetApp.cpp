@@ -69,11 +69,11 @@ void BudgetApp :: addIncome() {
     }
 }
 
-/*void BudgetApp :: changePassword() {
+void BudgetApp :: changePassword() {
 
     userManager.changePassword();
 }
-
+/*
 void BudgetApp :: addExpense() {
 
 }

@@ -32,7 +32,7 @@ void Date::getDateFromUser() {
             }
             else if (tolower(option)=='n')
             {
-                cout << "Enter date (yyyy-mm-dd): ";
+                cout << "Enter date (YYYY-MM-DD): ";
 
                 while (true)
                 {
@@ -128,8 +128,8 @@ string Date :: createDate() {
     return sdate;
 }
 
-bool Date::isDateInProperRange()
-{
+bool Date::isDateInProperRange() {
+
     int minDate = 20000101; // 2000-01-01
     int maxDate = (changeDateToIntNumber(getCurrentDateFromSystem())/100 + 1) * 100; // yyyy-nextMonth-00
 
