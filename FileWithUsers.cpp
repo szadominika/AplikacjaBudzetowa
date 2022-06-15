@@ -69,9 +69,12 @@ vector <User> FileWithUsers::loadUserFromFile() {
 
 bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
 
-    CMarkup xml;
+   CMarkup xml;
+    string fileNameWithUsers = XmlFile :: getFileName();
+    bool fileExists = xml.Load(fileNameWithUsers);
 
-    if (fileExists(xml))
+
+    if (fileExists)
     {
         xml.FindElem();
         xml.IntoElem();

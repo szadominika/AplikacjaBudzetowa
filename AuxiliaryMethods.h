@@ -26,6 +26,7 @@ public:
     static string addDashToDate(string date);
     static string removeDashFromDate(string date);
     static string changeFirstLetterToCapitalAndOtherToLowercase(string text);
+    static bool isLetter(char choice);
 
 };
 

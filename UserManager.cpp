@@ -154,8 +154,8 @@ void UserManager::userLogIn() {
     return ;
 }
 
-void UserManager::changePassword()
-{
+void UserManager::changePassword() {
+
     string newPassword = "";
     cout << "Enter password: ";
     cin >> newPassword;
@@ -169,7 +169,7 @@ void UserManager::changePassword()
             isPasswordChanged = fileWithUsers.changeUserPassword(itr);
 
             if (isPasswordChanged)
-                cout << "Your password has been successfully changed." << endl << endl;
+                cout << "\nYour password has been successfully changed." << endl << endl;
 
             system("pause");
         }

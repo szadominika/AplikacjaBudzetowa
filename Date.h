@@ -2,6 +2,7 @@
 #define DATE_H
 
 #include "AuxiliaryMethods.h"
+#include "Incomes.h"
 
 #include <iostream>
 #include <string>
@@ -14,6 +15,8 @@ using namespace std;
 
 class Date{
 
+    const int MIN_VALID_YR = 2000;
+
     string dateString;
     string sday, syear, smonth;
     int dateInt;
@@ -22,7 +25,14 @@ class Date{
     string createDate();
     bool isLeap(int year);
     bool isDateInProperRange();
+    bool isDateCorrect(string date);//
     bool isDateCorrect();
+    bool isValidFormatDate (string date);
+    bool isValidYear (int year);
+    bool isValidMonth(int month);
+    int getCurrentMonth();
+    bool isValidDay (int day, int month, int year);
+    int getCurrentYear();
 
 public:
     Date() {

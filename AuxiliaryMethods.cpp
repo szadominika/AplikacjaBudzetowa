@@ -70,10 +70,11 @@ float AuxiliaryMethod::getFloat() {
     string input = "";
     float number;
 
-    while (true)
-    {
+    while (true) {
+
         cin.clear();
         getline(cin, input);
+        input = changeCommaToDot(input);
         stringstream myStream(input);
         if (myStream >> number)
             break;
@@ -151,3 +152,12 @@ string AuxiliaryMethod::changeCommaToDot(string input) {
     }
     return input;
 }
+
+
+bool AuxiliaryMethod::isLetter(char choice) {
+
+    if(isdigit(choice))
+        return false;
+    return true;
+}
+

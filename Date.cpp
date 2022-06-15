@@ -2,6 +2,7 @@
 
 #include "Date.h"
 #include "AuxiliaryMethods.h"
+
 using namespace std;
 
 string Date::getDateString() {
@@ -17,37 +18,47 @@ int Date::getDateInt() {
 void Date::getDateFromUser() {
 
     char option;
-    cout << "Do you want to add income with current date?" << endl;
-    cout << "If yes, please click 'y', if you want to choose other date, please click 'n': " << endl;
-    while(true) {
+    cout << "Do you want to use today's date? (Y/N)" << endl;
+    while(true)
+    {
         option = AuxiliaryMethod::getChar();
-        if(tolower(option) == 'y') {
+        if (AuxiliaryMethod::isLetter(option))
+        {
+            if (tolower(option)=='y')
+            {
+                dateString = getCurrentDateFromSystem();
+                dateInt = changeDateToIntNumber(dateString);
+                break;
+            }
+            else if (tolower(option)=='n')
+            {
+                cout << "Enter date (yyyy-mm-dd): ";
 
-            dateString = getCurrentDateFromSystem();
-            dateInt = AuxiliaryMethod::convertStringToInt(AuxiliaryMethod::removeDashFromDate(dateString));// changeDateToIntNumber(dateString);
-            break;
-        }
-        else if (tolower(option) == 'n') {
-
-            while (true) {
-                cout << "Provide date in format YYYY-MM-DD: ";
-                dateString = AuxiliaryMethod::getLine();
-                dateInt = AuxiliaryMethod::convertStringToInt(AuxiliaryMethod::removeDashFromDate(dateString));//changeDateToIntNumber(dateString);
-                if(isDateCorrect()) {
-                    break;
-                } else {
-                cout << "Date isn't valid. Please enter the date again." << endl;
+                while (true)
+                {
+                    dateString = AuxiliaryMethod::getLine();
+                    dateInt = changeDateToIntNumber(dateString);
+                    if(isDateCorrect())
+                    {
+                        break;
+                    }
+                    else
+                        cout << "Date is not valid. Enter the date again." << endl;
                 }
                 break;
-
-            } /*else {
-
-                cout << "There is no such an option. Please try again.";
+            }
+            else
+            {
+                cout << "There is no such option. Try again.";
                 Sleep(1500);
-                } //while (dataManager.isDateCorrect(otherDate) == false);*/
+            }
+        }
+        else
+        {
+            cout << "It is not a letter. Try again.";
+            Sleep(1500);
         }
     }
-
 }
 
 bool Date::isDateCorrect() {
@@ -117,10 +128,10 @@ string Date :: createDate() {
     return sdate;
 }
 
-bool Date :: isDateInProperRange() {
-
+bool Date::isDateInProperRange()
+{
     int minDate = 20000101; // 2000-01-01
-    int maxDate = ((/*changeDateToIntNumber(getCurrentDateFromSystem()*/AuxiliaryMethod::convertStringToInt(AuxiliaryMethod::removeDashFromDate(dateString)))/100 + 1) * 100; // yyyy-nextMonth-00
+    int maxDate = (changeDateToIntNumber(getCurrentDateFromSystem())/100 + 1) * 100; // yyyy-nextMonth-00
 
     if (dateInt >= minDate && dateInt < maxDate)
         return true;
@@ -152,27 +163,3 @@ int Date :: changeDateToIntNumber(string sdate) {
 }
 
 
-/*string Date :: getDate() {
-    return date;
-}
-
-string Date :: getYear() {
-    return year;
-}
-string Date :: getMonth() {
-    return month;
-}
-string Date :: getDay() {
-    return day;
-}
-
-void Date :: setYear (string newYear) {
-    year = newYear;
-}
-void Date :: setMonth (string newMonth) {
-    month = newMonth;
-}
-
-void Date :: setDay (string newDay) {
-    day = newDay;
-}*/
