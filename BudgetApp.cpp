@@ -30,7 +30,6 @@ void BudgetApp :: logOffUser() {
 
 char BudgetApp :: selectOptionFromMainMenu() {
 
-   // AuxiliaryMethod auxiliaryMethod;
     char option;
 
     system("cls");
@@ -70,46 +69,23 @@ void BudgetApp :: addIncome() {
     }
 }
 
-void BudgetApp :: changePassword() {
+/*void BudgetApp :: changePassword() {
 
     userManager.changePassword();
 }
 
-/*void BudgetApp :: addExpense() {
+void BudgetApp :: addExpense() {
 
-    if (userMenager.ifUserIsLogged()) {
-        itemMenager->addExpense();
-    } else {
+}
 
-        cout << "You need to login " << endl;
-        system ("pause");
-    }
-}*/
+void BudgetApp :: viewCurrentMonthBalance() {
 
-/*void BudgetApp :: viewCurrentMonthBalance() {
-
-    if (userManager.isUserLoggedIn()) {
-        itemManager->viewCurrentMonthBalance();
-    } else {
-        cout << "You need to login " << endl;
-        system ("pause");
-    }
 }
 
 void BudgetApp :: viewLastMonthBalance() {
 
-    if (userManager.isUserLoggedIn()) {
-        itemManager->viewLastMonthBalance();
-    } else {
-        cout << "You need to login " << endl;
-        system ("pause");
 }
 
 void BudgetApp :: viewBalanceOfSelectedPeriod() {
 
-    if (userManager.isUserLoggedIn()) {
-        itemManager->viewBalanceOfSelectedPeriod();
-    } else {
-        cout << "You need to login " << endl;
-        system ("pause");
 }*/

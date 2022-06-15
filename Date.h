@@ -13,9 +13,7 @@
 
 using namespace std;
 
-class Date{
-
-    const int MIN_VALID_YR = 2000;
+class Date {
 
     string dateString;
     string sday, syear, smonth;
@@ -25,14 +23,7 @@ class Date{
     string createDate();
     bool isLeap(int year);
     bool isDateInProperRange();
-    bool isDateCorrect(string date);//
     bool isDateCorrect();
-    bool isValidFormatDate (string date);
-    bool isValidYear (int year);
-    bool isValidMonth(int month);
-    int getCurrentMonth();
-    bool isValidDay (int day, int month, int year);
-    int getCurrentYear();
 
 public:
     Date() {

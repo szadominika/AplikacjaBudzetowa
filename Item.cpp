@@ -34,16 +34,3 @@ int Item :: getUserId() {
     return userId;
 }
 
-/*int Item :: getIntDate() {
-    return intDate;
-}*/
-/*void Item :: setStringDate (string newDate) {
-        itemDate = newDate;
-}*/
-/*void Item :: setupItemId (int newItemId) {
-    if (newItemId >= 0)
-        itemId = newItemId;
-}*/
-/*int Item :: getItemId() {
-    return itemId;
-}*/

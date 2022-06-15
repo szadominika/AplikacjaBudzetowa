@@ -10,7 +10,8 @@ void FileWithUsers::addUserToFile(User user) {
     string fileNameWithUsers = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithUsers);
 
-    if (!fileExists) {//(xml)) {
+    if (!fileExists) {
+
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
@@ -101,20 +102,3 @@ bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
 
 }
 
-/*bool FileWithUsers :: checkLogin(string login) {
-
-    CMarkup xml;
-    bool fileExists = xml.Load(fileNameWithUsers);
-    xml.Load(fileNameWithUsers);
-    //xml.SetDoc( fileNameWithUsers );
-
-    xml.ResetPos();
-    //xml.FindElem();
-    //xml.IntoElem();
-    while ( xml.FindElem("LOGIN") == true ) {
-        if ( xml.GetData() == login ) {
-            return true;
-        }
-    }
-    return false;
-}*/

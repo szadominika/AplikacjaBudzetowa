@@ -19,7 +19,7 @@ bool FileWithIncomes::addIncomeToFile(Income income,Date date) {
     xml.IntoElem();
     xml.AddElem( "IncomeId", income.getIncomeId());
     xml.AddElem( "UserId", income.getUserId());
-    xml.AddElem( "Date", /*income.getItemDate()*/date.getDateString());
+    xml.AddElem( "Date", date.getDateString());
     xml.AddElem( "Item", income.getItemName());
     xml.AddElem( "Amount", AuxiliaryMethod::convertFloatToString (income.getItemAmount()));
     xml.Save(fileNameWithIncomes);
@@ -28,7 +28,6 @@ bool FileWithIncomes::addIncomeToFile(Income income,Date date) {
 
 vector <Income> FileWithIncomes::getIncomeFromFile(int ID_LOGGED_USER) {
 
-    //Income income;
     vector <Income> incomes;
     int incomeId = 0;
     CMarkup xml;
@@ -42,11 +41,8 @@ vector <Income> FileWithIncomes::getIncomeFromFile(int ID_LOGGED_USER) {
                 Income income;
                 xml.IntoElem();
                 xml.FindElem( "IncomeId");
-                //int itemId = atoi(xml.GetData().c_str());
                 incomeId = atoi((xml.GetElemContent()).c_str());
-                //item.setupItemId(itemId);
                 xml.FindElem("UserId");
-           // int userId = atoi(xml.GetData().c_str());//atoi( MCD_2PCSZ(xml.GetData()));
            if (atoi((xml.GetElemContent()).c_str()) == ID_LOGGED_USER) {
                     income.setUserId(ID_LOGGED_USER);
                     income.setIncomeId(incomeId);
