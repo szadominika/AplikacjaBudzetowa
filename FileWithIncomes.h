@@ -8,7 +8,7 @@
 #include "Markup.h"
 #include "XmlFile.h"
 #include "Incomes.h"
-//#include "Item.h"
+#include "Item.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;

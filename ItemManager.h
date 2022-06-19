@@ -27,11 +27,11 @@ class ItemManager {
     float totalIncome;
     // float totalExpense;
 
-   // Expense provideIncomeDetails();
+    Expense provideExpenseDetails();
     Income provideIncomeDetails();
 
     void viewIncome(vector <Income>::iterator itr);
-    //void viewExpense(vector <Expense>::iterator itr);
+    void viewExpense(vector <Expense>::iterator itr);
     //void sortIncomesByDate();
     //void sortExpensesByDate();
     //void viewSelectedIncome(int FromDate, int ToDate);
@@ -46,16 +46,18 @@ public:
             totalIncome = 0;
             //totalExpense = 0;
         incomes = fileWithIncomes.getIncomeFromFile(ID_LOGGED_USER);
-        //expenses = fileWithExpenses.getExpenseFromFile(ID_LOGGED_USER);
+        expenses = fileWithExpenses.getExpenseFromFile(ID_LOGGED_USER);
+
     };
 
     void addIncome();
-   // void addExpense();
+    void addExpense();
     //void viewCurrentMonthBalance();
     //void viewLastMonthBalance();
     //void viewBalanceOfSelectedPeriod();
 
     //bool provideDate();
     //void showAllIncomes(vector <Income>::iterator itr);
+    void viewAllExpenses();
 };
 #endif

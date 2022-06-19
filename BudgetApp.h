@@ -17,8 +17,6 @@ class BudgetApp {
    const string FILE_NAME_WITH_INCOMES;
    const string FILE_NAME_WITH_EXPENSES;
 
-
-
 public:
     BudgetApp(string fileNameWithUsers, string FileNameWithIncomes, string FileNameWithExpenses)
     : userManager(fileNameWithUsers), FILE_NAME_WITH_INCOMES(FileNameWithIncomes), FILE_NAME_WITH_EXPENSES (FileNameWithExpenses){
@@ -40,12 +38,13 @@ public:
     char selectOptionFromMainMenu();
     char selectOptionFromUserMenu();
     void addIncome();
-    // void addExpense();
+    void addExpense();
     // void viewCurrentMonthBalance();
     // void viewLastMonthBalance();
     // void viewBalanceOfSelectedPeriod();
     void changePassword();
-    void showAllUsers();
+    void viewAllExpenses();
+    //void showAllUsers();
 
 };
 

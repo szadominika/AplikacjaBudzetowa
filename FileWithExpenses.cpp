@@ -8,11 +8,13 @@ bool FileWithExpenses::addExpenseToFile(Expense expense,Date date) {
 
     //string amount = AuxiliaryMethod::convertFloatToString (income.getItemAmount());
     CMarkup xml;
+    string fileNameWithExpenses = XmlFile :: getFileName();
+    bool fileExists = xml.Load(fileNameWithExpenses);
 
-     if (!fileExists(xml))
+     if (!fileExists)
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-        xml.AddElem("Incomes");
+        xml.AddElem("Expenses");
     }
     xml.FindElem();
     xml.IntoElem();
@@ -58,6 +60,8 @@ vector <Expense> FileWithExpenses::getExpenseFromFile(int ID_LOGGED_USER) {
            xml.OutOfElem();
         }
     }
+
+
     return expenses;
 }
 

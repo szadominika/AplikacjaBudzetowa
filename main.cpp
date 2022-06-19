@@ -44,7 +44,8 @@ int main()
                 budgetApp.addIncome();
                 break;
             case '2':
-               //budgetApp.addExpense();
+                budgetApp.viewAllExpenses();
+                budgetApp.addExpense();
                 break;
             case '3':
                // budgetApp.viewCurrentMonthBalance();

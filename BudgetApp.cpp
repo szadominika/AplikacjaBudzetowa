@@ -16,10 +16,10 @@ bool BudgetApp :: isUserLoggedIn() {
     userManager.isUserLoggedIn();
 }
 
-void BudgetApp :: showAllUsers() {
+//void BudgetApp :: showAllUsers() {
 
 //    userManager.showAllUsers();
-}
+//}
 
 void BudgetApp :: logOffUser() {
 
@@ -56,6 +56,7 @@ void BudgetApp :: userLogIn() {
          if(userManager.isUserLoggedIn())
          {
              itemManager = new ItemManager (FILE_NAME_WITH_INCOMES, FILE_NAME_WITH_EXPENSES, userManager.getIdLoggedUser());
+
          }
 }
 
@@ -73,11 +74,24 @@ void BudgetApp :: changePassword() {
 
     userManager.changePassword();
 }
-/*
+
 void BudgetApp :: addExpense() {
+
+    if (userManager.isUserLoggedIn()) {
+        itemManager->addExpense();
+    } else {
+        cout << "You need to login " << endl;
+        system ("pause");
+    }
 
 }
 
+void BudgetApp::viewAllExpenses() {
+
+    itemManager->viewAllExpenses();
+
+}
+/*
 void BudgetApp :: viewCurrentMonthBalance() {
 
 }
