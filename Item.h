@@ -29,7 +29,6 @@ public:
     }
 
     void setDate (int newDate);
- //   void setStringDate (string newDate);
     void setUserId (int newUserId);
     void setItemName(string newItemName);
     void setItemAmount(float newItemAmount);
