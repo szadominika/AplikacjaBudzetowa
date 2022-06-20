@@ -83,19 +83,18 @@ void BudgetApp :: addExpense() {
         cout << "You need to login " << endl;
         system ("pause");
     }
-
 }
 
 void BudgetApp::viewAllExpenses() {
 
     itemManager->viewAllExpenses();
-
 }
-/*
+
 void BudgetApp :: viewCurrentMonthBalance() {
 
+    itemManager-> viewCurrentMonthBalance();
 }
-
+/*
 void BudgetApp :: viewLastMonthBalance() {
 
 }

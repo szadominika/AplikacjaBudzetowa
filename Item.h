@@ -13,14 +13,13 @@ class Item {
     float itemAmount;
 
 public:
-       /* Item(/*int itemId = 0, int userId = 0, string itemDate = "", string itemName = "", float itemAmount = 0.0)
-    {
-       // this->itemId = itemId;
+        Item(int userId = 0, int itemDate = 0, string itemName = "", float itemAmount = 0.0) {
+
         this->userId = userId;
         this->itemDate = itemDate;
         this->itemName = itemName;
         this->itemAmount = itemAmount;
-    }*/
+    }
 
     bool operator () (Item a, Item b) {
 

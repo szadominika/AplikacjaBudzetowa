@@ -39,7 +39,7 @@ public:
     char selectOptionFromUserMenu();
     void addIncome();
     void addExpense();
-    // void viewCurrentMonthBalance();
+    void viewCurrentMonthBalance();
     // void viewLastMonthBalance();
     // void viewBalanceOfSelectedPeriod();
     void changePassword();
