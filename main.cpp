@@ -48,7 +48,7 @@ int main()
                 budgetApp.addExpense();
                 break;
             case '3':
-               // budgetApp.viewCurrentMonthBalance();
+                budgetApp.viewCurrentMonthBalance();
                 break;
             case '4':
                // budgetApp.viewLastMonthBalance();

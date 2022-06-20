@@ -24,27 +24,26 @@ class ItemManager {
     FileWithExpenses fileWithExpenses;
 
     Date date;
-    float totalIncome;
-    // float totalExpense;
+    float sumOfIncomes;
+    float sumOfExpenses;
 
     Expense provideExpenseDetails();
     Income provideIncomeDetails();
 
     void viewIncome(vector <Income>::iterator itr);
     void viewExpense(vector <Expense>::iterator itr);
-    //void sortIncomesByDate();
-    //void sortExpensesByDate();
-    //void viewSelectedIncome(int FromDate, int ToDate);
-    //void viewSelectedExpenses(int FromDate, int ToDate);
-    //void sumUpAllIncome(vector <Income>::iterator itr);
-    //void sumUpAllExpenses(vector <Expenses>::iterator itr);
+    void sortByDateIncomes();
+    void sortByDateExpenses();
+    void viewSelectedIncomes(int fromDate, int toDate);
+    void viewSelectedExpenses(int FromDate, int ToDate);
+    void sumUpIncomes(vector <Income>::iterator itr);
+    void sumUpExpenses(vector <Expense>::iterator itr);
 
 public:
     ItemManager (string fileNameWithIncomes, string fileNameWithExpenses, int idLoggedUser) :
         fileWithIncomes (fileNameWithIncomes), fileWithExpenses (fileNameWithExpenses), ID_LOGGED_USER(idLoggedUser) {
-
-            totalIncome = 0;
-            //totalExpense = 0;
+        sumOfIncomes = 0;
+        sumOfExpenses = 0;
         incomes = fileWithIncomes.getIncomeFromFile(ID_LOGGED_USER);
         expenses = fileWithExpenses.getExpenseFromFile(ID_LOGGED_USER);
 
@@ -52,7 +51,7 @@ public:
 
     void addIncome();
     void addExpense();
-    //void viewCurrentMonthBalance();
+    void viewCurrentMonthBalance();
     //void viewLastMonthBalance();
     //void viewBalanceOfSelectedPeriod();
 
