@@ -51,10 +51,10 @@ int main()
                 budgetApp.viewCurrentMonthBalance();
                 break;
             case '4':
-               // budgetApp.viewLastMonthBalance();
+                budgetApp.viewLastMonthBalance();
                 break;
             case '5':
-                //budgetApp..viewBalanceOfSelectedPeriod();
+                budgetApp.viewBalanceOfSelectedPeriod();
                 break;
             case '6':
                 budgetApp.changePassword();
