@@ -94,11 +94,13 @@ void BudgetApp :: viewCurrentMonthBalance() {
 
     itemManager-> viewCurrentMonthBalance();
 }
-/*
+
 void BudgetApp :: viewLastMonthBalance() {
 
+    itemManager-> viewLastMonthBalance();
 }
 
 void BudgetApp :: viewBalanceOfSelectedPeriod() {
 
-}*/
+    itemManager-> viewBalanceOfSelectedPeriod();
+}

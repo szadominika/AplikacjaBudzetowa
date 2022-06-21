@@ -44,11 +44,11 @@ Income ItemManager :: provideIncomeDetails() {
 
 void ItemManager :: viewIncome( vector <Income>::iterator itr) {
 
-    cout << "Income ID:   " << itr -> getIncomeId() << endl;
-    cout << "User ID:     " << itr -> getUserId() << endl;
+   // cout << "Income ID:   " << itr -> getIncomeId() << endl;
+    //cout << "User ID:     " << itr -> getUserId() << endl;
     //int date = itr -> getItemDate();
     cout << "Date:        " << date.changeDateTostring(itr -> getItemDate()) << endl;
-    cout << "Item:        " << itr -> getItemName() << endl;
+   // cout << "Item:        " << itr -> getItemName() << endl;
     cout << "Amount:      " << itr -> getItemAmount() << endl;
 }
 
@@ -94,10 +94,10 @@ Expense ItemManager :: provideExpenseDetails() {
 
 void ItemManager :: viewExpense( vector <Expense>::iterator itr) {
 
-    cout << "Expense ID:   " << itr -> getExpenseId() << endl;
-    cout << "User ID:     " << itr -> getUserId() << endl;
+    //cout << "Expense ID:   " << itr -> getExpenseId() << endl;
+    //cout << "User ID:     " << itr -> getUserId() << endl;
     cout << "Date:        " << date.changeDateTostring(itr -> getItemDate()) << endl;
-    cout << "Item:        " << itr -> getItemName() << endl;
+   // cout << "Item:        " << itr -> getItemName() << endl;
     cout << "Amount:      " << itr -> getItemAmount() << endl;
 }
 
@@ -129,8 +129,8 @@ void ItemManager::viewCurrentMonthBalance() {
     viewSelectedExpenses(minDate, maxDate);
 
     cout << ">>>   FINANCE STATEMENT   <<<\n" << endl;
-    cout << "Total income:     " << sumOfIncomes << endl;
-    cout << "Total expense:    " << sumOfExpenses << endl;
+   // cout << "Total income:     " << sumOfIncomes << endl;
+    //cout << "Total expense:    " << sumOfExpenses << endl;
     cout << "Month Balance:    " << showpos << sumOfIncomes - sumOfExpenses << endl << endl;
     cout << noshowpos;
 
@@ -194,4 +194,80 @@ void ItemManager::viewSelectedExpenses(int minDate, int maxDate) {
 void ItemManager::sumUpExpenses (vector <Expense>::iterator itr) {
 
     sumOfExpenses += itr -> getItemAmount();
+}
+
+void ItemManager::viewLastMonthBalance() {
+
+    int todaysDate = date.changeDateToIntNumber(date.getCurrentDateFromSystem());
+    int minDate = (todaysDate/100 - 1)*100 + 1;
+    int maxDate = (todaysDate/100)*100;
+
+    system("cls");
+
+    sortByDateIncomes();
+    cout << ">>> INCOMES FOR THE LAST MONTH  <<<\n" << endl;
+    viewSelectedIncomes(minDate, maxDate);
+
+
+    sortByDateExpenses();
+    cout << ">>> EXPENSES FOR THE LAST MONTH <<<\n" << endl;
+    viewSelectedExpenses(minDate, maxDate);
+
+    cout << ">>>   FINANCE STATEMENT   <<<\n" << endl;
+    //cout << "Total income:     " << sumOfIncomes << endl;
+  //  cout << "Total expense:    " << sumOfExpenses << endl;
+    cout << "Month Balance:    " << showpos << sumOfIncomes - sumOfExpenses << endl << endl;
+    cout << noshowpos;
+
+    sumOfIncomes = 0;
+    sumOfExpenses = 0;
+
+    system("pause");
+
+}
+
+void ItemManager::viewBalanceOfSelectedPeriod() {
+
+    system("cls");
+
+    int firstDate = 0, secondDate = 0, minDate = 0, maxDate = 0;
+    cout << "Enter a start date and an end date of period that you want to view summary: " << endl;
+    cout << "\nEnter a start date: " << endl;
+    date.getDateFromUser();
+    firstDate = date.getDateInt();
+    cout << "\nEnter an end date: " << endl;
+    date.getDateFromUser();
+    secondDate = date.getDateInt();
+
+    if (firstDate < secondDate) {
+        minDate = firstDate;
+        maxDate = secondDate;
+    }
+    else {
+        minDate = secondDate;
+        maxDate = firstDate;
+    }
+
+    system("cls");
+
+    sortByDateIncomes();
+    cout << ">>> INCOMES FOR THE SELECTED PERIOD  <<<\n" << endl;
+    viewSelectedIncomes(minDate, maxDate);
+
+
+    sortByDateExpenses();
+    cout << ">>> EXPENSES FOR THE SELECTED PERIOD <<<\n" << endl;
+    viewSelectedExpenses(minDate, maxDate);
+
+    cout << ">>>   FINANCE STATEMENT   <<<\n" << endl;
+    //cout << "Total income:     " << sumOfIncomes << endl;
+    //cout << "Total expense:    " << sumOfExpenses << endl;
+    cout << "Month Balance:    " << showpos << sumOfIncomes - sumOfExpenses << endl << endl;
+    cout << noshowpos;
+
+    sumOfIncomes = 0;
+    sumOfExpenses = 0;
+
+    system("pause");
+
 }

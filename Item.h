@@ -13,17 +13,18 @@ class Item {
     float itemAmount;
 
 public:
-        Item(int userId = 0, int itemDate = 0, string itemName = "", float itemAmount = 0.0) {
+       /* Item(int userId = 0, int itemDate = 0, string itemName = "", float itemAmount = 0.0) {
 
         this->userId = userId;
         this->itemDate = itemDate;
         this->itemName = itemName;
         this->itemAmount = itemAmount;
-    }
+    }*/
 
-    bool operator () (Item a, Item b) {
+    bool operator () (Item firstDate, Item secondDate) {
 
-    if (a.getItemDate() < b.getItemDate())
+        if (firstDate.getItemDate() < secondDate.getItemDate())
+
         return true;
     }
 

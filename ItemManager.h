@@ -52,8 +52,8 @@ public:
     void addIncome();
     void addExpense();
     void viewCurrentMonthBalance();
-    //void viewLastMonthBalance();
-    //void viewBalanceOfSelectedPeriod();
+    void viewLastMonthBalance();
+    void viewBalanceOfSelectedPeriod();
 
     //bool provideDate();
     //void showAllIncomes(vector <Income>::iterator itr);
