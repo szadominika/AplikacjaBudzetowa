@@ -11,7 +11,6 @@ void FileWithUsers::addUserToFile(User user) {
     bool fileExists = xml.Load(fileNameWithUsers);
 
     if (!fileExists) {
-
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
@@ -27,9 +26,7 @@ void FileWithUsers::addUserToFile(User user) {
     xml.AddElem( "Surname", user.getSurname() );
 
     xml.Save(fileNameWithUsers);
-
 }
-
 
 vector <User> FileWithUsers::loadUserFromFile() {
 

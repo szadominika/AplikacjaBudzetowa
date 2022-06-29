@@ -3,6 +3,7 @@
 
 #include "AuxiliaryMethods.h"
 #include "Incomes.h"
+//#include "DateManager.h"
 
 #include <iostream>
 #include <string>
@@ -27,19 +28,14 @@ class Date {
 
 public:
     Date() {
-
-        dateString = "";
-        sday = "";
-        smonth = "";
-        syear = "";
-        dateInt = 0;
-        day = 0;
-        month = 0;
-        year = 0;
+        dateString = "";        sday = "";        smonth = "";        syear = "";
+        dateInt = 0;        day = 0;        month = 0;        year = 0;
     }
 
     string getDateString();
     int getDateInt();
+    void setDateString(string newDateString);
+    void setDateInt(int newDateInt);
     string getCurrentDateFromSystem();
     int changeDateToIntNumber(string sday);
     void getDateFromUser();

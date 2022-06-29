@@ -9,6 +9,7 @@ using namespace std;
 void BudgetApp :: registerUser() {
 
     userManager.registerUser();
+    userManager.logOutUser();
 }
 
 bool BudgetApp :: isUserLoggedIn() {
@@ -16,33 +17,21 @@ bool BudgetApp :: isUserLoggedIn() {
     userManager.isUserLoggedIn();
 }
 
-//void BudgetApp :: showAllUsers() {
+/*void BudgetApp :: showAllUsers() {
 
-//    userManager.showAllUsers();
-//}
+   userManager.showAllUsers();
+}*/
 
-void BudgetApp :: logOffUser() {
+void BudgetApp :: logOutUser() {
 
-    userManager.logOffUser();
+    userManager.logOutUser();
     delete itemManager;
     itemManager = NULL;
 }
 
 char BudgetApp :: selectOptionFromMainMenu() {
 
-    char option;
-
-    system("cls");
-    cout << "    >>> MAIN MENU <<<" << endl;
-    cout << "---------------------------" << endl;
-    cout << "1. Registration" << endl;
-    cout << "2. Login" << endl;
-    cout << "9. End" << endl;
-    cout << "---------------------------" << endl;
-    cout << "Your choice: ";
-    option = AuxiliaryMethod::getChar();
-
-    return option;
+    userManager.selectOptionFromMainMenu();
 }
 
 char BudgetApp :: selectOptionFromUserMenu() {
@@ -55,7 +44,7 @@ void BudgetApp :: userLogIn() {
      userManager.userLogIn();
          if(userManager.isUserLoggedIn())
          {
-             itemManager = new ItemManager (FILE_NAME_WITH_INCOMES, FILE_NAME_WITH_EXPENSES, userManager.getIdLoggedUser());
+             itemManager = new ItemManager (FILE_NAME_WITH_INCOMES, FILE_NAME_WITH_EXPENSES, userManager.getLoggedInUserID());
 
          }
 }
@@ -64,7 +53,8 @@ void BudgetApp :: addIncome() {
 
     if (userManager.isUserLoggedIn()) {
         itemManager->addIncome();
-    } else {
+    }
+    else {
         cout << "You need to login " << endl;
         system ("pause");
     }
@@ -85,22 +75,22 @@ void BudgetApp :: addExpense() {
     }
 }
 
-void BudgetApp::viewAllExpenses() {
+/*void BudgetApp::viewAllExpenses() {
 
     itemManager->viewAllExpenses();
+}*/
+
+void BudgetApp :: showBalanceForCurrentMonth() {
+
+    itemManager-> showBalanceForCurrentMonth();
 }
 
-void BudgetApp :: viewCurrentMonthBalance() {
+void BudgetApp :: showBalanceForLastMonth() {
 
-    itemManager-> viewCurrentMonthBalance();
+    itemManager-> showBalanceForLastMonth();
 }
 
-void BudgetApp :: viewLastMonthBalance() {
+void BudgetApp :: showBalanceForSelectedPeriod() {
 
-    itemManager-> viewLastMonthBalance();
-}
-
-void BudgetApp :: viewBalanceOfSelectedPeriod() {
-
-    itemManager-> viewBalanceOfSelectedPeriod();
+    itemManager-> showBalanceForSelectedPeriod();
 }

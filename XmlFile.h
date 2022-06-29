@@ -2,7 +2,7 @@
 #define XMLFILE_H
 
 #include <iostream>
-#include <cstdlib>
+//#include <cstdlib>
 
 #include "Markup.h"
 #include "Date.h"
@@ -14,7 +14,7 @@ class XmlFile {
     const string FILE_NAME;
 
 public:
-    Date date;
+    //Date date;
     XmlFile(string fileName) : FILE_NAME(fileName) {
     }
     bool fileExists(CMarkup &xml);

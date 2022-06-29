@@ -15,6 +15,17 @@ int Date::getDateInt() {
     return dateInt;
 }
 
+/*void Date::setDateString(string newDateString) {
+
+        dateString = newDateString;
+}
+
+void Date:: setDateInt(int newDateInt) {
+
+      dateInt = newDateInt;
+}*/
+
+
 void Date::getDateFromUser() {
 
     char option;

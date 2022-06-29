@@ -13,14 +13,6 @@ class Item {
     float itemAmount;
 
 public:
-       /* Item(int userId = 0, int itemDate = 0, string itemName = "", float itemAmount = 0.0) {
-
-        this->userId = userId;
-        this->itemDate = itemDate;
-        this->itemName = itemName;
-        this->itemAmount = itemAmount;
-    }*/
-
     bool operator () (Item firstDate, Item secondDate) {
 
         if (firstDate.getItemDate() < secondDate.getItemDate())
@@ -32,7 +24,6 @@ public:
     void setUserId (int newUserId);
     void setItemName(string newItemName);
     void setItemAmount(float newItemAmount);
-
     int getUserId();
     string getItemName();
     float getItemAmount();

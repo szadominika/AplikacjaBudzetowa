@@ -32,18 +32,19 @@ public:
 
     void registerUser();
     void userLogIn();
-    void logOffUser();
-
+    void logOutUser();
     bool isUserLoggedIn();
+    void changePassword();
+
     char selectOptionFromMainMenu();
     char selectOptionFromUserMenu();
+
     void addIncome();
     void addExpense();
-    void viewCurrentMonthBalance();
-    void viewLastMonthBalance();
-    void viewBalanceOfSelectedPeriod();
-    void changePassword();
-    void viewAllExpenses();
+    void showBalanceForCurrentMonth();
+    void showBalanceForLastMonth();
+    void showBalanceForSelectedPeriod();
+   // void viewAllExpenses();
     //void showAllUsers();
 
 };

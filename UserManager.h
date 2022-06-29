@@ -29,14 +29,16 @@ public:
         };
 
         void registerUser();
-        char selectOptionFromUserMenu();
-        void showAllUsers();
-        int getIdLoggedUser();
         void userLogIn();
-        void logOffUser();
+        void logOutUser();
         bool isUserLoggedIn();
         void changePassword();
 
+        char selectOptionFromUserMenu();
+        char selectOptionFromMainMenu();
+        int getLoggedInUserID();
+
+        //void showAllUsers();
 };
 
 #endif

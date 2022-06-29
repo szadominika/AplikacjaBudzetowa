@@ -19,17 +19,13 @@ class ItemManager {
     const int ID_LOGGED_USER;
     vector <Income> incomes;
     vector <Expense> expenses;
-
     FileWithIncomes fileWithIncomes;
     FileWithExpenses fileWithExpenses;
-
     Date date;
     float sumOfIncomes;
     float sumOfExpenses;
-
     Expense provideExpenseDetails();
     Income provideIncomeDetails();
-
     void viewIncome(vector <Income>::iterator itr);
     void viewExpense(vector <Expense>::iterator itr);
     void sortByDateIncomes();
@@ -51,12 +47,9 @@ public:
 
     void addIncome();
     void addExpense();
-    void viewCurrentMonthBalance();
-    void viewLastMonthBalance();
-    void viewBalanceOfSelectedPeriod();
-
-    //bool provideDate();
-    //void showAllIncomes(vector <Income>::iterator itr);
+    void showBalanceForCurrentMonth();
+    void showBalanceForLastMonth();
+    void showBalanceForSelectedPeriod();
     void viewAllExpenses();
 };
 #endif

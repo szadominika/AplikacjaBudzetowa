@@ -7,19 +7,15 @@ using namespace std;
 int main()
 {
     BudgetApp budgetApp("Users.xml", "Incomes.xml", "Expenses.xml");
-   // budgetApp.showAllUsers();
-    // system("pause");
-    char option = 0;
 
+    char option = 0;
     while (true)
     {
 
-        if (!budgetApp.isUserLoggedIn())
-        {
+        if (!budgetApp.isUserLoggedIn()) {
            option = budgetApp.selectOptionFromMainMenu();
 
-            switch (option)
-            {
+            switch (option) {
             case '1':
                 budgetApp.registerUser();
                 break;
@@ -36,31 +32,29 @@ int main()
             }
         }
        else {
-
             option = budgetApp.selectOptionFromUserMenu();
-            switch (option)
-            {
+            switch (option) {
             case '1':
                 budgetApp.addIncome();
                 break;
             case '2':
-                budgetApp.viewAllExpenses();
+                //budgetApp.viewAllExpenses();
                 budgetApp.addExpense();
                 break;
             case '3':
-                budgetApp.viewCurrentMonthBalance();
+                budgetApp.showBalanceForCurrentMonth();
                 break;
             case '4':
-                budgetApp.viewLastMonthBalance();
+                budgetApp.showBalanceForLastMonth();
                 break;
             case '5':
-                budgetApp.viewBalanceOfSelectedPeriod();
+                budgetApp.showBalanceForSelectedPeriod();
                 break;
             case '6':
                 budgetApp.changePassword();
                 break;
             case '7':
-               budgetApp.logOffUser();
+               budgetApp.logOutUser();
                 break;
             }
         }
