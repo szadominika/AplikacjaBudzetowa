@@ -37,3 +37,25 @@ int Item :: getUserId() {
     return userId;
 }
 
+/*int Item :: getItemId(){
+    return itemId;
+}
+
+string Item :: getStringAmount() {
+    return stringAmount;
+}
+
+string Item :: getStringDate() {
+    return stringDate;
+}
+
+void Item :: getItemId(newItemId) {
+    itemId = newItemId;
+}
+
+void Item :: getStringAmount(newStringAmount) {
+    stringAmount = newStringAmount;
+}
+void Item :: getStringDate(newStringDate) {
+    stringDate = newStringDate;
+}*/

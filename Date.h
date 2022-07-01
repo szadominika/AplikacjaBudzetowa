@@ -3,14 +3,12 @@
 
 #include "AuxiliaryMethods.h"
 #include "Incomes.h"
-//#include "DateManager.h"
 
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <ctime>
 #include <windows.h>
-
 
 using namespace std;
 
@@ -20,10 +18,6 @@ class Date {
     string sday, syear, smonth;
     int dateInt;
     int year, month, day;
-
-    string createDate();
-    bool isLeap(int year);
-    bool isDateInProperRange();
     bool isDateCorrect();
 
 public:

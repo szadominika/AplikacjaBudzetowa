@@ -4,14 +4,10 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     BudgetApp budgetApp("Users.xml", "Incomes.xml", "Expenses.xml");
-
     char option = 0;
-    while (true)
-    {
-
+    while (true) {
         if (!budgetApp.isUserLoggedIn()) {
            option = budgetApp.selectOptionFromMainMenu();
 
@@ -38,7 +34,6 @@ int main()
                 budgetApp.addIncome();
                 break;
             case '2':
-                //budgetApp.viewAllExpenses();
                 budgetApp.addExpense();
                 break;
             case '3':
@@ -59,7 +54,6 @@ int main()
             }
         }
     }
-
     return 0;
 }
 

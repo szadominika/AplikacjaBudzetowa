@@ -17,12 +17,10 @@ class FileWithIncomes : public XmlFile {
 
     string fileNameWithIncomes;
     int lastIncomeId;
-
     int getLastIncomeIdFromFile();
 
 public:
     FileWithIncomes(string fileNameWithIncomes) : XmlFile(fileNameWithIncomes){
-
         lastIncomeId = getLastIncomeIdFromFile();
     };
 

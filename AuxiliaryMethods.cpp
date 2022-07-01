@@ -8,17 +8,13 @@
 
 using namespace std;
 
-char AuxiliaryMethod::getChar()
-{
+char AuxiliaryMethod::getChar() {
     string input = "";
     char sign  = {0};
-
-    while (true)
-    {
+    while (true) {
         getline(cin, input);
 
-        if (input.length() == 1)
-        {
+        if (input.length() == 1) {
             sign = input[0];
             break;
         }
@@ -28,16 +24,13 @@ char AuxiliaryMethod::getChar()
 }
 
 string AuxiliaryMethod::getLine() {
-
     string input = "";
     getline(cin, input);
     return input;
 }
 
 string AuxiliaryMethod::changeFirstLetterToCapitalAndOtherToLowercase(string text) {
-
-    if (!text.empty())
-    {
+    if (!text.empty())  {
         transform(text.begin(), text.end(), text.begin(), ::tolower);
         text[0] = toupper(text[0]);
     }
@@ -45,7 +38,6 @@ string AuxiliaryMethod::changeFirstLetterToCapitalAndOtherToLowercase(string tex
 }
 
 string AuxiliaryMethod::removeDashFromDate(string date) {
-
     string stringDatewithoutDash;
 
     for (int i = 0 ; i <= date.length(); i++) {
@@ -57,7 +49,6 @@ string AuxiliaryMethod::removeDashFromDate(string date) {
 }
 
 int AuxiliaryMethod::convertStringToInt(string date) {
-
     int number;
     istringstream iss(date);
     iss >> number;
@@ -65,12 +56,10 @@ int AuxiliaryMethod::convertStringToInt(string date) {
 }
 
 float AuxiliaryMethod::getFloat() {
-
     string input = "";
     float number;
 
     while (true) {
-
         cin.clear();
         getline(cin, input);
         input = changeCommaToDot(input);
@@ -83,20 +72,16 @@ float AuxiliaryMethod::getFloat() {
 }
 
 string AuxiliaryMethod::convertFloatToString(float amount) {
-
     std::stringstream FloatToStr;
     std::string str;
 
     FloatToStr << amount;
     FloatToStr >> str;
     FloatToStr.clear();
-
     return str;
-
 }
 
 string AuxiliaryMethod::convertIntToString (int number) {
-
     ostringstream ss;
     ss << number;
     string str = ss.str();
@@ -104,7 +89,6 @@ string AuxiliaryMethod::convertIntToString (int number) {
 }
 
 string AuxiliaryMethod::addDashToDate(string date) {
-
     string stringDateWithDash;
     stringDateWithDash = date.insert (4,1,'-');
     stringDateWithDash = stringDateWithDash.insert (7,1,'-');
@@ -114,7 +98,6 @@ string AuxiliaryMethod::addDashToDate(string date) {
 }
 
 float AuxiliaryMethod::convertStringToFloat(string amount) {
-
     float input;
     istringstream iss(amount);
     iss >> input;
@@ -125,12 +108,10 @@ bool AuxiliaryMethod::isFloatNumber(string input) {
 
     if(input == "")
         return false;
-    else
-    {
+    else {
         size_t found = input.find_first_not_of("1234567890.,");
 
-        if (found == string::npos)
-        {
+        if (found == string::npos) {
             found = input.find_first_not_of("1234567890");
 
             if(found == string::npos)
@@ -143,17 +124,14 @@ bool AuxiliaryMethod::isFloatNumber(string input) {
 }
 
 string AuxiliaryMethod::changeCommaToDot(string input) {
-
     size_t foundComma = input.find(",");
-    if(foundComma != string::npos)
-    {
+    if(foundComma != string::npos) {
         input.replace(foundComma, 1, ".");
     }
     return input;
 }
 
 bool AuxiliaryMethod::isLetter(char choice) {
-
     if(isdigit(choice))
         return false;
     return true;

@@ -22,7 +22,6 @@ public:
     void addUserToFile(User user);
     vector <User> loadUserFromFile();
     bool changeUserPassword(vector <User>::iterator itr);
-
 };
 
 #endif

@@ -22,6 +22,7 @@ class ItemManager {
     FileWithIncomes fileWithIncomes;
     FileWithExpenses fileWithExpenses;
     Date date;
+    bool isAmountCorrect(string amount);
     float sumOfIncomes;
     float sumOfExpenses;
     Expense provideExpenseDetails();
@@ -42,9 +43,7 @@ public:
         sumOfExpenses = 0;
         incomes = fileWithIncomes.getIncomeFromFile(ID_LOGGED_USER);
         expenses = fileWithExpenses.getExpenseFromFile(ID_LOGGED_USER);
-
     };
-
     void addIncome();
     void addExpense();
     void showBalanceForCurrentMonth();
@@ -52,4 +51,6 @@ public:
     void showBalanceForSelectedPeriod();
     void viewAllExpenses();
 };
+
+
 #endif

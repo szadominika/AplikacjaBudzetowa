@@ -5,14 +5,11 @@
 using namespace std;
 
 bool FileWithExpenses::addExpenseToFile(Expense expense,Date date) {
-
-    //string amount = AuxiliaryMethod::convertFloatToString (income.getItemAmount());
     CMarkup xml;
     string fileNameWithExpenses = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithExpenses);
 
-     if (!fileExists)
-    {
+     if (!fileExists) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Expenses");
     }
@@ -30,17 +27,14 @@ bool FileWithExpenses::addExpenseToFile(Expense expense,Date date) {
 }
 
 vector <Expense> FileWithExpenses::getExpenseFromFile(int ID_LOGGED_USER) {
-
     vector <Expense> expenses;
     int expenseId = 0;
     CMarkup xml;
 
     if (fileExists(xml)) {
-
         xml.FindElem();
         xml.IntoElem();
         while ( xml.FindElem("Expense") == true) {
-
                 Expense expense;
                 xml.IntoElem();
                 xml.FindElem( "ExpenseId");
@@ -60,33 +54,26 @@ vector <Expense> FileWithExpenses::getExpenseFromFile(int ID_LOGGED_USER) {
            xml.OutOfElem();
         }
     }
-
-
     return expenses;
 }
 
 int FileWithExpenses::getLastExpenseIdFromFile() {
-
     CMarkup xml;
     vector <Expense> expenses;
 
     if(fileExists(xml)) {
-
         xml.FindElem();
         xml.IntoElem();
         while(xml.FindElem("Expense")) {
-
             xml.FindChildElem("ExpenseId");
         }
         return lastExpenseId = AuxiliaryMethod::convertStringToInt(xml.GetChildData());
     } else {
-
         return 0;
     }
 }
 
 int FileWithExpenses::getLastExpenseId() {
-
     return lastExpenseId;
 }
 

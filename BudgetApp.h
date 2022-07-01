@@ -20,12 +20,9 @@ class BudgetApp {
 public:
     BudgetApp(string fileNameWithUsers, string FileNameWithIncomes, string FileNameWithExpenses)
     : userManager(fileNameWithUsers), FILE_NAME_WITH_INCOMES(FileNameWithIncomes), FILE_NAME_WITH_EXPENSES (FileNameWithExpenses){
-
         itemManager = NULL; // jezeli pracujemy na wskazniku to ustawiamy w klasie gdzie go tworzymy NULL
     }
-
     ~BudgetApp()  {// rowniez nalezy stworzyc destruktor, sprzata po danej klasie
-
         delete itemManager;
         itemManager = NULL;
     };
@@ -35,18 +32,13 @@ public:
     void logOutUser();
     bool isUserLoggedIn();
     void changePassword();
-
     char selectOptionFromMainMenu();
     char selectOptionFromUserMenu();
-
     void addIncome();
     void addExpense();
     void showBalanceForCurrentMonth();
     void showBalanceForLastMonth();
     void showBalanceForSelectedPeriod();
-   // void viewAllExpenses();
-    //void showAllUsers();
-
 };
 
 #endif
