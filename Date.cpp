@@ -22,7 +22,7 @@ void Date:: setDateInt(int newDateInt) {
 
 void Date::getDateFromUser() {
     char option;
-    cout << "Do you want to use today's date? (y/n)" << endl;
+    cout << "Czy chcesz u¿yæ dzisiejszej daty? (y/n)" << endl;
     while(true) {
         option = AuxiliaryMethod::getChar();
         if (AuxiliaryMethod::isLetter(option)){
@@ -32,7 +32,7 @@ void Date::getDateFromUser() {
                 break;
             }
             else if (tolower(option)=='n') {
-                cout << "Enter date (YYYY-MM-DD): ";
+                cout << "Wpisz datê (YYYY-MM-DD): ";
                 while (true) {
                     dateString = AuxiliaryMethod::getLine();
                     dateInt = changeDateToIntNumber(dateString);
@@ -40,17 +40,17 @@ void Date::getDateFromUser() {
                         break;
                     }
                     else
-                        cout << "Date is not valid. Enter the date again." << endl;
+                        cout << "Niepoprawny format. Proszê wpisaæ ponownie." << endl;
                 }
                 break;
             }
             else {
-                cout << "There is no such option. Try again.";
+                cout << "Nie ma takiej opcji. Spróbuj ponownie.";
                 Sleep(1500);
             }
         }
         else {
-            cout << "It is not a letter. Try again.";
+            cout << "To nie jest litera. Spróbuj ponownie.";
             Sleep(1500);
         }
     }

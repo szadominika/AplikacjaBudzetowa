@@ -18,7 +18,7 @@ char AuxiliaryMethod::getChar() {
             sign = input[0];
             break;
         }
-        cout << "This is not a character. Please enter again." << endl;
+        cout << "To nie jest pojedynczy znak. Proszê wpisaæ ponownie." << endl;
     }
     return sign;
 }
@@ -66,7 +66,7 @@ float AuxiliaryMethod::getFloat() {
         stringstream myStream(input);
         if (myStream >> number)
             break;
-        cout << "This is not the amount. Please add again. " << endl;
+        cout << "To nie jest liczba. Proszê wpisaæ ponownie. " << endl;
     }
     return number;
 }

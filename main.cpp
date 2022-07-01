@@ -1,10 +1,13 @@
  #include <iostream>
 
  #include "BudgetApp.h"
+ #include <ctime>
+#include <windows.h>
 
 using namespace std;
 
 int main() {
+    setlocale(LC_ALL, "Polish");
     BudgetApp budgetApp("Users.xml", "Incomes.xml", "Expenses.xml");
     char option = 0;
     while (true) {
@@ -22,7 +25,7 @@ int main() {
                 exit(0);
                 break;
             default:
-                cout << endl << "There is no such option in the menu." << endl << endl;
+                cout << endl << "Nie ma takiej opcji." << endl << endl;
                 system("pause");
                 break;
             }
