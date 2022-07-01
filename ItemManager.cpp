@@ -7,7 +7,7 @@ void ItemManager :: addIncome() {
     income = provideIncomeDetails();
     incomes.push_back(income);
     fileWithIncomes.addIncomeToFile(income, date);
-    cout << endl << "Income has been successfully added to the file." << endl << endl;
+    cout << endl << "Przychod zostal dodany do pliku." << endl << endl;
     system("pause");
 }
 
@@ -18,27 +18,22 @@ Income ItemManager :: provideIncomeDetails() {
     char option;
 
     system("cls");
-    cout << "  ADDING NEW INCOME " << endl << endl;
+    cout << "  DODAJ PRZYCHOD " << endl << endl;
     date.getDateFromUser();
     income.setDate(date.getDateInt());
 
-    cout << "Provide income description: ";
+    cout << "Wprowadz nazwe przychodu: ";
     itemName = AuxiliaryMethod::getLine();
     income.setItemName(itemName);
-    cout << "Provide amount: ";
-    // amount = (AuxiliaryMethod::getFloat());
+    cout << "Wprowadz kwote: ";
+
     do {
         string samount = (AuxiliaryMethod::getLine());
         if(isAmountCorrect(samount)) {
             amount = AuxiliaryMethod::convertStringToFloat(AuxiliaryMethod::changeCommaToDot(samount));
-
-           // amount = stof(AuxiliaryMethod::changeCommaToDot(samount));
             break;
         }
     } while(true);
-    cout<< amount;
-    system("pause");
-
     income.setItemAmount(amount);
 
     income.setIncomeId(fileWithIncomes.getLastIncomeId() + 1);
@@ -55,11 +50,11 @@ bool ItemManager::isAmountCorrect(string samount) {
         int singleChar = samount[i];
 
         if((singleChar == 44 || singleChar == 46) && (samount[i+1] == 44 || samount[i+1] == 46)) {
-            cout << "Incorrect character in value. Please enter amount again." << endl;
+            cout << "Niepoprawna wartosc. Sprobuj ponownie." << endl;
             return false;
         }
         if (((singleChar == 45) || (singleChar > 57))) {
-            cout << "Incorrect character in value. Please enter amount again." << endl;
+            cout << "Niepoprawna wartosc. Sprobuj ponownie." << endl;
             return false;
         }
          if(singleChar == 44 || singleChar == 46) {
@@ -67,13 +62,13 @@ bool ItemManager::isAmountCorrect(string samount) {
 
             samount.erase(0, positionOfDot+1);
                 if(samount.size() > 2) {
-                    cout << "Please enter the date to 2 decimal places." << endl;
+                    cout << "Prosze podaj wartosc z dokladnoscia do 0.00" << endl;
                     return false;
             }
         }
     }
     if (samount.empty()) {
-            cout << "The amount has not been enter. Please enter amount again.";
+            cout << "Nie wprowadzono kwoty. Sprobuj ponownie.";
             return false;
         }
 
@@ -81,7 +76,7 @@ bool ItemManager::isAmountCorrect(string samount) {
 }
 
 void ItemManager :: viewIncome( vector <Income>::iterator itr) {
-    // cout << "Income ID:   " << itr -> getIncomeId() << endl;
+     cout << "Income ID:   " << itr -> getIncomeId() << endl;
     //cout << "User ID:     " << itr -> getUserId() << endl;
     //int date = itr -> getItemDate();
     cout << "Date:        " << date.changeDateTostring(itr -> getItemDate()) << endl;
@@ -95,7 +90,7 @@ void ItemManager :: addExpense() {
     expenses.push_back(expense);
 
     fileWithExpenses.addExpenseToFile(expense, date);
-    cout << endl << "Expense has been successfully added to the file." << endl << endl;
+    cout << endl << "Wydatek zostal dodany do pliku." << endl << endl;
     system("pause");
 }
 
@@ -106,15 +101,15 @@ Expense ItemManager :: provideExpenseDetails() {
     char option;
 
     system("cls");
-    cout << "  ADDING NEW EXPENSE " << endl << endl;
+    cout << "  DODAJ WYDATEK " << endl << endl;
     date.getDateFromUser();
     expense.setDate(date.getDateInt());
 
-    cout << "Provide expense description: ";
+    cout << "Wprowadz nazwe wydatku: ";
     itemName = AuxiliaryMethod::getLine();
     expense.setItemName(itemName);
-    cout << "Provide amount: ";
-    //amount = AuxiliaryMethod::getFloat();
+    cout << "Wprowadz kwote: ";
+
     do {
         string samount = (AuxiliaryMethod::getLine());
         if(isAmountCorrect(samount)) {
@@ -132,7 +127,7 @@ Expense ItemManager :: provideExpenseDetails() {
 }
 
 void ItemManager :: viewExpense( vector <Expense>::iterator itr) {
-    //cout << "Expense ID:   " << itr -> getExpenseId() << endl;
+    cout << "Expense ID:   " << itr -> getExpenseId() << endl;
     //cout << "User ID:     " << itr -> getUserId() << endl;
     cout << "Date:        " << date.changeDateTostring(itr -> getItemDate()) << endl;
     // cout << "Item:        " << itr -> getItemName() << endl;
@@ -151,17 +146,28 @@ void ItemManager::showBalanceForCurrentMonth() {
     int todaysDate = date.changeDateToIntNumber(date.getCurrentDateFromSystem());
     int minDate = (todaysDate/100)*100 + 1;
     int maxDate = (todaysDate/100 + 1)*100;
-
+    cout << fixed << setprecision(2);
     system("cls");
     sortByDateIncomes();
-    cout << "INCOMES FOR THE CURRENT MONTH  " << endl;
+    cout << "Dochod w biezacym miesiacu.  " << endl;
     viewSelectedIncomes(minDate, maxDate);
     sortByDateExpenses();
-    cout << "EXPENSES FOR THE CURRENT MONTH " << endl;
+    cout << "Wydatki w biezacym miesiacu. " << endl;
     viewSelectedExpenses(minDate, maxDate);
 
-    cout << "FINANCE STATEMENT   " << endl;
-    cout << "Month Balance:    " << showpos << sumOfIncomes - sumOfExpenses << endl << endl;
+    cout << "Podsumowanie  " << endl;
+
+    if(sumOfIncomes == 0){
+        cout << "Suma przychodow: brak" << endl;
+    } else
+    cout << "Suma przychodow: " << sumOfIncomes << endl;
+
+    if(sumOfExpenses == 0){
+        cout << "Suma wydatkow: brak" << endl;
+    } else
+    cout << "Suma wydatkow: " << sumOfExpenses << endl;
+
+    cout << "Miesieczny bilans:    " << showpos << sumOfIncomes - sumOfExpenses << endl << endl;
     cout << noshowpos;
     sumOfIncomes = 0;
     sumOfExpenses = 0;
@@ -185,7 +191,7 @@ void ItemManager::viewSelectedIncomes(int minDate, int maxDate) {
         }
     }
     if (!incomeExist)
-        cout << "There were no incomes." << endl;
+        cout << "Nie wprowadzono przychodu.." << endl;
 }
 
 void ItemManager::sumUpIncomes (vector <Income>::iterator itr) {
@@ -209,7 +215,7 @@ void ItemManager::viewSelectedExpenses(int minDate, int maxDate) {
         }
     }
     if (!expenseExist)
-        cout << "There were no incomes." << endl;
+        cout << "Nie wprowadzono wydatkow." << endl;
 }
 
 void ItemManager::sumUpExpenses (vector <Expense>::iterator itr) {
@@ -220,17 +226,28 @@ void ItemManager::showBalanceForLastMonth() {
     int todaysDate = date.changeDateToIntNumber(date.getCurrentDateFromSystem());
     int minDate = (todaysDate/100 - 1)*100 + 1;
     int maxDate = (todaysDate/100)*100;
-
+    cout << fixed << setprecision(2);
     system("cls");
     sortByDateIncomes();
-    cout << "INCOMES FOR THE PREVIOUS MONTH  " << endl;
+    cout << "Dochod w poprzednim miesiacu  " << endl;
     viewSelectedIncomes(minDate, maxDate);
     sortByDateExpenses();
-    cout << "EXPENSES FOR THE PREVIOUS MONTH " << endl;
+    cout << "Wydatki w poprzednim miesiacu " << endl;
     viewSelectedExpenses(minDate, maxDate);
 
-    cout << "FINANCE STATEMENT   " << endl;
-    cout << "Month Balance:    " << showpos << sumOfIncomes - sumOfExpenses << endl << endl;
+    cout << "Podsumowanie  " << endl;
+
+    if(sumOfIncomes == 0){
+        cout << "Suma przychodow: brak" << endl;
+    } else
+    cout << "Suma przychodow: " << sumOfIncomes << endl;
+
+    if(sumOfExpenses == 0){
+        cout << "Suma wydatkow: brak" << endl;
+    } else
+    cout << "Suma wydatkow: " << sumOfExpenses << endl;
+
+    cout << "Miesieczny bilans:    " << showpos << sumOfIncomes - sumOfExpenses << endl << endl;
     cout << noshowpos;
     sumOfIncomes = 0;
     sumOfExpenses = 0;
@@ -240,11 +257,12 @@ void ItemManager::showBalanceForLastMonth() {
 void ItemManager::showBalanceForSelectedPeriod() {
     system("cls");
     int firstDate = 0, secondDate = 0, minDate = 0, maxDate = 0;
-    cout << "Enter a start date and an end date of period that you want to view summary: " << endl;
-    cout << "Enter a start date: " << endl;
+    cout << fixed << setprecision(2);
+
+    cout << "Wprowadz date poczatkowa: " << endl;
     date.getDateFromUser();
     firstDate = date.getDateInt();
-    cout << "Enter an end date: " << endl;
+    cout << "Wprowadz date koncowa: " << endl;
     date.getDateFromUser();
     secondDate = date.getDateInt();
     if (firstDate < secondDate) {
@@ -257,14 +275,24 @@ void ItemManager::showBalanceForSelectedPeriod() {
 
     system("cls");
     sortByDateIncomes();
-    cout << "INCOMES FOR THE SELECTED PERIOD" << endl;
+    cout << "Przychod w wybranym okresie" << endl;
     viewSelectedIncomes(minDate, maxDate);
     sortByDateExpenses();
-    cout << "EXPENSES FOR THE SELECTED PERIOD " << endl;
+    cout << "Wydatki w wybranym okresie" << endl;
     viewSelectedExpenses(minDate, maxDate);
 
-    cout << "FINANCE STATEMENT   " << endl;
-    cout << "Month Balance:    " << showpos << sumOfIncomes - sumOfExpenses << endl << endl;
+    cout << "Podsumowanie  " << endl;
+    if(sumOfIncomes == 0){
+        cout << "Suma przychodow: brak" << endl;
+    } else
+    cout << "Suma przychodow: " << sumOfIncomes << endl;
+
+    if(sumOfExpenses == 0){
+        cout << "Suma wydatkow: brak" << endl;
+    } else
+    cout << "Suma wydatkow: " << sumOfExpenses << endl;
+
+    cout << "Miesieczny bilans:    " << showpos << sumOfIncomes - sumOfExpenses << endl << endl;
     cout << noshowpos;
     sumOfIncomes = 0;
     sumOfExpenses = 0;

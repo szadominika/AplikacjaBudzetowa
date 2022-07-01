@@ -40,10 +40,6 @@ void BudgetApp :: addIncome() {
     if (userManager.isUserLoggedIn()) {
         itemManager->addIncome();
     }
-    else {
-        cout << "You need to login " << endl;
-        system ("pause");
-    }
 }
 
 void BudgetApp :: changePassword() {
@@ -53,9 +49,6 @@ void BudgetApp :: changePassword() {
 void BudgetApp :: addExpense() {
     if (userManager.isUserLoggedIn()) {
         itemManager->addExpense();
-    } else {
-        cout << "You need to login " << endl;
-        system ("pause");
     }
 }
 

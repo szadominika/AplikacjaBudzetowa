@@ -72,7 +72,6 @@ bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
             xml.FindElem("UserID");
             int userId = AuxiliaryMethod::convertStringToInt(xml.GetData());
             if (userId == itr -> getUserId()) {
-            //system("pause");
                 xml.FindElem("Password");
                 xml.SetData(itr -> getPassword());
                 xml.Save(fileNameWithUsers);
@@ -82,7 +81,7 @@ bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
         }
     }
     else {
-        cout << "Cannot open the " << getFileName() << " file." << endl;
+        cout << "Nie mozna otworzyc pliku o nazwie " << getFileName() << endl;
         return false;
     }
 }
