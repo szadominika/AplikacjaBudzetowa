@@ -4,14 +4,11 @@
 using namespace std;
 
 bool FileWithIncomes::addIncomeToFile(Income income,Date date) {
-
-    //string amount = AuxiliaryMethod::convertFloatToString (income.getItemAmount());
     CMarkup xml;
     string fileNameWithIncomes = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithIncomes);
 
-     if (!fileExists)
-    {
+     if (!fileExists) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Incomes");
     }
@@ -29,17 +26,14 @@ bool FileWithIncomes::addIncomeToFile(Income income,Date date) {
 }
 
 vector <Income> FileWithIncomes::getIncomeFromFile(int ID_LOGGED_USER) {
-
     vector <Income> incomes;
     int incomeId = 0;
     CMarkup xml;
 
     if (fileExists(xml)) {
-
         xml.FindElem();
         xml.IntoElem();
         while ( xml.FindElem("Income") == true) {
-
                 Income income;
                 xml.IntoElem();
                 xml.FindElem( "IncomeId");
@@ -63,27 +57,22 @@ vector <Income> FileWithIncomes::getIncomeFromFile(int ID_LOGGED_USER) {
 }
 
 int FileWithIncomes::getLastIncomeIdFromFile() {
-
     CMarkup xml;
     vector <Income> incomes;
 
     if(fileExists(xml)) {
-
         xml.FindElem();
         xml.IntoElem();
         while(xml.FindElem("Income")) {
-
             xml.FindChildElem("IncomeId");
         }
         return lastIncomeId = AuxiliaryMethod::convertStringToInt(xml.GetChildData());
     } else {
-
         return 0;
     }
 }
 
 int FileWithIncomes::getLastIncomeId() {
-
     return lastIncomeId;
 }
 

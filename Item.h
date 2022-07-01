@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+
 using namespace std;
 
 class Item {
@@ -13,13 +14,11 @@ class Item {
     float itemAmount;
 
 public:
+
     bool operator () (Item firstDate, Item secondDate) {
-
         if (firstDate.getItemDate() < secondDate.getItemDate())
-
         return true;
     }
-
     void setDate (int newDate);
     void setUserId (int newUserId);
     void setItemName(string newItemName);
@@ -28,6 +27,9 @@ public:
     string getItemName();
     float getItemAmount();
     int getItemDate();
+
 };
+
+
 
 #endif

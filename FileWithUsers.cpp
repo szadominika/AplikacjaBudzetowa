@@ -5,7 +5,6 @@
 using namespace std;
 
 void FileWithUsers::addUserToFile(User user) {
-
     CMarkup xml;
     string fileNameWithUsers = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithUsers);
@@ -14,7 +13,6 @@ void FileWithUsers::addUserToFile(User user) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
-
     xml.FindElem();
     xml.IntoElem();
     xml.AddElem("User");
@@ -29,18 +27,14 @@ void FileWithUsers::addUserToFile(User user) {
 }
 
 vector <User> FileWithUsers::loadUserFromFile() {
-
     User user;
     vector <User> users;
-
     CMarkup xml;
 
-    if (fileExists(xml)) //(fileExists == true)
-    {
+    if (fileExists(xml)) {
         xml.FindElem();
         xml.IntoElem();
         while ( xml.FindElem("User") == true) {
-
             xml.IntoElem();
             xml.FindElem( "UserID");
             int userId = atoi(xml.GetData().c_str());
@@ -66,24 +60,19 @@ vector <User> FileWithUsers::loadUserFromFile() {
 }
 
 bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
-
     CMarkup xml;
     string fileNameWithUsers = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithUsers);
 
     if (fileExists == true) {
-
         xml.FindElem();
         xml.IntoElem();
-
-        while(xml.FindElem("User"))
-        {
+        while(xml.FindElem("User"))  {
             xml.IntoElem();
             xml.FindElem("UserID");
             int userId = AuxiliaryMethod::convertStringToInt(xml.GetData());
-            if (userId == itr -> getUserId())
-            {
-            system("pause");
+            if (userId == itr -> getUserId()) {
+            //system("pause");
                 xml.FindElem("Password");
                 xml.SetData(itr -> getPassword());
                 xml.Save(fileNameWithUsers);
@@ -92,11 +81,8 @@ bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
             xml.OutOfElem();
         }
     }
-    else
-    {
+    else {
         cout << "Cannot open the " << getFileName() << " file." << endl;
         return false;
     }
-
 }
-
