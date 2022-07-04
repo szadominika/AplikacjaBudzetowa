@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "Incomes.h"
 
 using namespace std;

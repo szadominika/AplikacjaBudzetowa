@@ -35,7 +35,6 @@ char UserManager :: selectOptionFromMainMenu() {
     cout << endl;
     cout << "Twoj wybor: ";
     option = AuxiliaryMethod::getChar();
-
     return option;
 }
 
@@ -85,7 +84,6 @@ User UserManager::getNewUserData() {
     system("cls");
     cout << "REJESTRACJA" << endl << endl;
     cout << "Wprowadz dane uzytkownika." << endl << endl;
-
     loggedInUserId = getNewUserId();
     user.setUserId(loggedInUserId);
 
@@ -93,7 +91,6 @@ User UserManager::getNewUserData() {
             cout << "Wprowadz login: ";
             user.setLogin(AuxiliaryMethod::getLine()); // bez obiektu, bezpoœrednio na klasie (metoda statyczna)
     } while (isLoginExists(user.getLogin()) == true);
-
         cout << "Wprowadz haslo: ";
         user.setPassword(AuxiliaryMethod::getLine());
         cout << "Wprowadz imie: ";
@@ -114,7 +111,6 @@ void UserManager::userLogIn() {
     login = AuxiliaryMethod::getLine();
 
     vector <User>::iterator itr = users.begin();
-
     while (itr != users.end()) {
         if (itr -> getLogin() == login) {
             for (int numberOfTrial = 3; numberOfTrial > 0; numberOfTrial--) {
@@ -143,7 +139,6 @@ void UserManager::changePassword() {
     cout << "Wprowadz nowe haslo: ";
     newPassword = AuxiliaryMethod::getLine();
     bool isPasswordChanged = false;
-
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
         if (itr -> getUserId() == loggedInUserId) {
             itr -> setPassword(newPassword);

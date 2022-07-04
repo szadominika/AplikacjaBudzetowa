@@ -8,7 +8,6 @@ bool FileWithExpenses::addExpenseToFile(Expense expense,Date date) {
     CMarkup xml;
     string fileNameWithExpenses = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithExpenses);
-
      if (!fileExists) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Expenses");
@@ -30,7 +29,6 @@ vector <Expense> FileWithExpenses::getExpenseFromFile(int ID_LOGGED_USER) {
     vector <Expense> expenses;
     int expenseId = 0;
     CMarkup xml;
-
     if (fileExists(xml)) {
         xml.FindElem();
         xml.IntoElem();
@@ -60,7 +58,6 @@ vector <Expense> FileWithExpenses::getExpenseFromFile(int ID_LOGGED_USER) {
 int FileWithExpenses::getLastExpenseIdFromFile() {
     CMarkup xml;
     vector <Expense> expenses;
-
     if(fileExists(xml)) {
         xml.FindElem();
         xml.IntoElem();

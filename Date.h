@@ -25,7 +25,6 @@ public:
         dateString = "";        sday = "";        smonth = "";        syear = "";
         dateInt = 0;        day = 0;        month = 0;        year = 0;
     }
-
     string getDateString();
     int getDateInt();
     void setDateString(string newDateString);

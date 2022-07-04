@@ -39,7 +39,6 @@ string AuxiliaryMethod::changeFirstLetterToCapitalAndOtherToLowercase(string tex
 
 string AuxiliaryMethod::removeDashFromDate(string date) {
     string stringDatewithoutDash;
-
     for (int i = 0 ; i <= date.length(); i++) {
         if (date[i] != '-') {
             stringDatewithoutDash += date[i];
@@ -58,7 +57,6 @@ int AuxiliaryMethod::convertStringToInt(string date) {
 float AuxiliaryMethod::getFloat() {
     string input = "";
     float number;
-
     while (true) {
         cin.clear();
         getline(cin, input);
@@ -74,7 +72,6 @@ float AuxiliaryMethod::getFloat() {
 string AuxiliaryMethod::convertFloatToString(float amount) {
     std::stringstream FloatToStr;
     std::string str;
-
     FloatToStr << amount;
     FloatToStr >> str;
     FloatToStr.clear();
@@ -93,7 +90,6 @@ string AuxiliaryMethod::addDashToDate(string date) {
     stringDateWithDash = date.insert (4,1,'-');
     stringDateWithDash = stringDateWithDash.insert (7,1,'-');
     cout << stringDateWithDash << endl;
-
     return stringDateWithDash;
 }
 
@@ -105,15 +101,12 @@ float AuxiliaryMethod::convertStringToFloat(string amount) {
 }
 
 bool AuxiliaryMethod::isFloatNumber(string input) {
-
     if(input == "")
         return false;
     else {
         size_t found = input.find_first_not_of("1234567890.,");
-
         if (found == string::npos) {
             found = input.find_first_not_of("1234567890");
-
             if(found == string::npos)
                 return true;
             else if(found == input.find_last_not_of("1234567890"))

@@ -26,14 +26,14 @@ public:
             users = fileWithUsers.loadUserFromFile();
 
         };
-        void registerUser();
-        void userLogIn();
-        void logOutUser();
-        bool isUserLoggedIn();
-        void changePassword();
-        char selectOptionFromUserMenu();
-        char selectOptionFromMainMenu();
-        int getLoggedInUserID();
+    void registerUser();
+    void userLogIn();
+    void logOutUser();
+    bool isUserLoggedIn();
+    void changePassword();
+    char selectOptionFromUserMenu();
+    char selectOptionFromMainMenu();
+    int getLoggedInUserID();
 };
 
 #endif

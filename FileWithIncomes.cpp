@@ -7,7 +7,6 @@ bool FileWithIncomes::addIncomeToFile(Income income,Date date) {
     CMarkup xml;
     string fileNameWithIncomes = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithIncomes);
-
      if (!fileExists) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Incomes");
@@ -29,7 +28,6 @@ vector <Income> FileWithIncomes::getIncomeFromFile(int ID_LOGGED_USER) {
     vector <Income> incomes;
     int incomeId = 0;
     CMarkup xml;
-
     if (fileExists(xml)) {
         xml.FindElem();
         xml.IntoElem();
@@ -59,7 +57,6 @@ vector <Income> FileWithIncomes::getIncomeFromFile(int ID_LOGGED_USER) {
 int FileWithIncomes::getLastIncomeIdFromFile() {
     CMarkup xml;
     vector <Income> incomes;
-
     if(fileExists(xml)) {
         xml.FindElem();
         xml.IntoElem();
