@@ -16,6 +16,7 @@
 using namespace std;
 
 class ItemManager {
+
     const int ID_LOGGED_USER;
     vector <Income> incomes;
     vector <Expense> expenses;

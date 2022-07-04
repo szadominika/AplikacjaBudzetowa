@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "FileWithUsers.h"
 #include "Markup.h"
 
@@ -22,7 +23,6 @@ void FileWithUsers::addUserToFile(User user) {
     xml.AddElem( "Password", user.getPassword() );
     xml.AddElem( "Name", user.getName() );
     xml.AddElem( "Surname", user.getSurname() );
-
     xml.Save(fileNameWithUsers);
 }
 
@@ -30,7 +30,6 @@ vector <User> FileWithUsers::loadUserFromFile() {
     User user;
     vector <User> users;
     CMarkup xml;
-
     if (fileExists(xml)) {
         xml.FindElem();
         xml.IntoElem();
@@ -52,7 +51,6 @@ vector <User> FileWithUsers::loadUserFromFile() {
             string userSurname = xml.GetData();
             user.setSurname(userSurname);
             users.push_back(user);
-
             xml.OutOfElem();
         }
     }
@@ -63,7 +61,6 @@ bool FileWithUsers::changeUserPassword(vector <User>::iterator itr) {
     CMarkup xml;
     string fileNameWithUsers = XmlFile :: getFileName();
     bool fileExists = xml.Load(fileNameWithUsers);
-
     if (fileExists == true) {
         xml.FindElem();
         xml.IntoElem();

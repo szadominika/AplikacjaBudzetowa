@@ -1,19 +1,20 @@
- #include <iostream>
-
- #include "BudgetApp.h"
- #include <ctime>
+#include <iostream>
+#include <ctime>
 #include <windows.h>
+
+#include "BudgetApp.h"
 
 using namespace std;
 
 int main() {
     setlocale(LC_ALL, "Polish");
     BudgetApp budgetApp("Users.xml", "Incomes.xml", "Expenses.xml");
+
     char option = 0;
+
     while (true) {
         if (!budgetApp.isUserLoggedIn()) {
            option = budgetApp.selectOptionFromMainMenu();
-
             switch (option) {
             case '1':
                 budgetApp.registerUser();

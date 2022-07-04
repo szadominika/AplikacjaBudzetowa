@@ -12,7 +12,6 @@ class BudgetApp {
 
    UserManager userManager;
    ItemManager *itemManager; // nie mamy danych do tej klasy od razu dlatego tworzymy wskaŸnik
-
    const string FILE_NAME_WITH_USERS;
    const string FILE_NAME_WITH_INCOMES;
    const string FILE_NAME_WITH_EXPENSES;
@@ -26,7 +25,6 @@ public:
         delete itemManager;
         itemManager = NULL;
     };
-
     void registerUser();
     void userLogIn();
     void logOutUser();

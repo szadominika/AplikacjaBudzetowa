@@ -21,12 +21,10 @@ Income ItemManager :: provideIncomeDetails() {
     cout << "  DODAJ PRZYCHOD " << endl << endl;
     date.getDateFromUser();
     income.setDate(date.getDateInt());
-
     cout << "Wprowadz nazwe przychodu: ";
     itemName = AuxiliaryMethod::getLine();
     income.setItemName(itemName);
     cout << "Wprowadz kwote: ";
-
     do {
         string samount = (AuxiliaryMethod::getLine());
         if(isAmountCorrect(samount)) {
@@ -35,10 +33,8 @@ Income ItemManager :: provideIncomeDetails() {
         }
     } while(true);
     income.setItemAmount(amount);
-
     income.setIncomeId(fileWithIncomes.getLastIncomeId() + 1);
     income.setUserId(ID_LOGGED_USER);
-
     return income;
 }
 
@@ -71,7 +67,6 @@ bool ItemManager::isAmountCorrect(string samount) {
             cout << "Nie wprowadzono kwoty. Sprobuj ponownie.";
             return false;
         }
-
     return true;
 }
 
@@ -88,7 +83,6 @@ void ItemManager :: addExpense() {
     Expense expense;
     expense = provideExpenseDetails();
     expenses.push_back(expense);
-
     fileWithExpenses.addExpenseToFile(expense, date);
     cout << endl << "Wydatek zostal dodany do pliku." << endl << endl;
     system("pause");
@@ -104,12 +98,10 @@ Expense ItemManager :: provideExpenseDetails() {
     cout << "  DODAJ WYDATEK " << endl << endl;
     date.getDateFromUser();
     expense.setDate(date.getDateInt());
-
     cout << "Wprowadz nazwe wydatku: ";
     itemName = AuxiliaryMethod::getLine();
     expense.setItemName(itemName);
     cout << "Wprowadz kwote: ";
-
     do {
         string samount = (AuxiliaryMethod::getLine());
         if(isAmountCorrect(samount)) {
@@ -117,9 +109,7 @@ Expense ItemManager :: provideExpenseDetails() {
             break;
         }
     } while(true);
-
     expense.setItemAmount(amount);
-
     expense.setExpenseId(fileWithExpenses.getLastExpenseId() + 1);
     expense.setUserId(ID_LOGGED_USER);
 
@@ -156,7 +146,6 @@ void ItemManager::showBalanceForCurrentMonth() {
     viewSelectedExpenses(minDate, maxDate);
 
     cout << "Podsumowanie  " << endl;
-
     if(sumOfIncomes == 0){
         cout << "Suma przychodow: brak" << endl;
     } else
@@ -180,7 +169,6 @@ void ItemManager::sortByDateIncomes() {
 
 void ItemManager::viewSelectedIncomes(int minDate, int maxDate) {
     bool incomeExist = false;
-
     for (vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
         int date = itr -> getItemDate();
         if(date >= minDate && date <= maxDate) {
@@ -204,7 +192,6 @@ void ItemManager::sortByDateExpenses() {
 
 void ItemManager::viewSelectedExpenses(int minDate, int maxDate) {
     bool expenseExist = false;
-
     for (vector <Expense>::iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
         int date = itr -> getItemDate();
         if(date >= minDate && date <= maxDate) {
@@ -236,7 +223,6 @@ void ItemManager::showBalanceForLastMonth() {
     viewSelectedExpenses(minDate, maxDate);
 
     cout << "Podsumowanie  " << endl;
-
     if(sumOfIncomes == 0){
         cout << "Suma przychodow: brak" << endl;
     } else

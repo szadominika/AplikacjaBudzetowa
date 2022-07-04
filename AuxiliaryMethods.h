@@ -1,7 +1,6 @@
 #ifndef AUXILIARYMETHOD_H
 #define AUXILIARYMETHOD_H
 
-
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -11,7 +10,6 @@ using namespace std;
 class AuxiliaryMethod {
 
     static bool isFloatNumber(string input);
-
 
 public:
     static char getChar();
@@ -25,7 +23,7 @@ public:
     static string removeDashFromDate(string date);
     static string changeFirstLetterToCapitalAndOtherToLowercase(string text);
     static bool isLetter(char choice);
-      static string changeCommaToDot(string input);
+    static string changeCommaToDot(string input);
 };
 
 #endif
